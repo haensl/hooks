@@ -1,0 +1,38 @@
+{
+  "name": "@haensl/hooks-cjs-module-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm test",
+    "test": "jest --runInBand --no-cache --reporters='default' --reporters='jest-junit'"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "jest": {
+    "modulePaths": [
+      "<rootDir>"
+    ]
+  },
+  "jest-junit": {
+    "outputDirectory": "test-results/jest",
+    "outputName": "results.xml",
+    "suitName": "react-component-console cjs module tests"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1",
+    "jest-junit": "^10.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
