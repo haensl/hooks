@@ -26,7 +26,8 @@ commands:
           name: extract latest published version
           working_directory: ~/hooks
           command: |
-            LIVE_VERSION=$(npm show @haensl/hooks version)
+            LIVE_VERSION=$(npm show @haensl/hooks version || true)
+            [ -z "${LIVE_VERSION}" ] && LIVE_VERSION='0.0.0'
             echo "export LIVE_VERSION=${LIVE_VERSION}" >> ${BASH_ENV}
             echo "latest published version: ${LIVE_VERSION}"
   extract-versions:
