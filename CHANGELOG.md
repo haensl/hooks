@@ -5,3 +5,4 @@
 * Setup Rollup bundling.
 * Setup Jest unit tests.
 * Add CJS package test.
+* Add ESM package test.
