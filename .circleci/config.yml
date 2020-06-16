@@ -112,17 +112,16 @@ workflows:
       - ensure-versioned-correctly:
           requires:
             - bundle
-    #
-    #- publish:
-    #requires:
-    #- ensure-versioned-correctly
-    #- bundle-test-esm-js
-    #filters:
-    #branches:
-    #only: master
-    #- package-test-esm-js:
-    #requires:
-    #- publish
+      - publish:
+          requires:
+            - ensure-versioned-correctly
+            - bundle-test-esm-js
+          filters:
+            branches:
+              only: master
+      - package-test-esm-js:
+          requires:
+            - publish
 
 jobs:
   lint:
