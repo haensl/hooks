@@ -1,3 +1,8 @@
+## 1.0.0
+* [#4: Add useDebounce hook.](https://github.com/haensl/hooks/issues/4)
+* Add [throttle service](src/services/throttle).
+* Enable node module publishing via CircleCI.
+
 ## 0.1.0
 * [#1: Bootstrap project.](https://github.com/haensl/hooks/issues/1)
 * Initialize npm project.

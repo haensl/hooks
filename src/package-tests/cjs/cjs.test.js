@@ -1,24 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import foo from '@haensl/hooks';
+import { useDebounce } from '@haensl/hooks';
 
 describe('cjs module test', () => {
   let container;
-  let Component;
 
-  beforeEach(() => {
+  beforeAll(() => {
     container = document.createElement('div');
-    Component = () => (
-      <span>{ foo }</span>
-    );
   });
 
-  it('renders without crashing', () => {
-    ReactDOM.render(
-      <Component />,
-      container
-    );
-    ReactDOM.unmountComponentAtNode(container);
+  describe('useDebounce', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const handler = useDebounce(jest.fn(), 10);
+
+        return (
+          <button
+            onClick={ handler }
+          >click me</button>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
   });
 });
 
