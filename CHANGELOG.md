@@ -1,3 +1,7 @@
+## 1.1.1
+* [#8: Improve documentation for function argument of useAnimationFrame.](https://github.com/haensl/hooks/issues/8)
+* Add Codepen examples for useAnimationFrame and useDebounce.
+
 ## 1.1.0
 * [#6: Add useAnimationFrame hook.](https://github.com/haensl/hooks/issues/6)
 
