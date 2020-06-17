@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { useDebounce } from '@haensl/hooks';
+import { useDebounce, useAnimationFrame } from '@haensl/hooks';
 
 describe('cjs module test', () => {
   let container;
@@ -20,6 +20,28 @@ describe('cjs module test', () => {
           <button
             onClick={ handler }
           >click me</button>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
+  });
+
+  describe('useAnimationFrame', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        useAnimationFrame(jest.fn());
+
+        return (
+          <span>useAnimationFrame test</span>
         );
       };
     });

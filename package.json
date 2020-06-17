@@ -1,6 +1,6 @@
 {
   "name": "@haensl/hooks",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Assorted React hooks.",
   "main": "dist/hooks.cjs.js",
   "module": "dist/hooks.esm.js",
@@ -24,7 +24,11 @@
     "hooks",
     "useDebounce",
     "debounce",
-    "react hooks"
+    "react hooks",
+    "useAnimationFrame",
+    "requestAnimationFrame",
+    "animationFrame",
+    "animation"
   ],
   "author": {
     "name": "HP Dietz",
