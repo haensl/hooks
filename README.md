@@ -48,11 +48,11 @@ const DebouncedButton = () => {
 * [`useAnimationFrame`](#useAnimationFrame): animate a function.
 * [`useDebounce`](#useDeboune): debounce a function.
 
-### useAnimationFrame(fn)<a name="useAnimationFrame"></a>
+### useAnimationFrame((deltaMs) => {})<a name="useAnimationFrame"></a>
 
-Uses [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) to animate `fn`.
+Uses [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) to animate a function. The callback is passed one single argument, the time delta in milliseconds that has passed between this and the last call. Please check the [example](#useAnimationFrameExample) below as well as the [Codepen example](https://codepen.io/haensl/pen/GRoNGNB).
 
-##### Example
+##### Example<a name="useAnimationFrameExample"></a>
 
 ```javascript
 import React, { useState, useEffect } from 'react';
@@ -79,11 +79,13 @@ const AnimatedTimer = () => {
 };
 ```
 
+#### [→ Codepen example](https://codepen.io/haensl/pen/GRoNGNB)
+
 ### useDebounce(fn, debounceMs)<a name="useDebounce"></a>
 
-Uses [memoization](https://reactjs.org/docs/hooks-reference.html#usememo) to debounce `fn` by `debounceMs` milliseconds.
+Uses [memoization](https://reactjs.org/docs/hooks-reference.html#usememo) to debounce `fn` by `debounceMs` milliseconds. Please check the [example below](#useDebounceExample) as well as the [Codepen example](https://codepen.io/haensl/pen/eYJBKEZ).
 
-##### Example
+##### Example<a name="useDebounceExample"></a>
 
 ```javascript
 import React from 'react';
@@ -102,6 +104,7 @@ const DebouncedButton = () => {
 };
 ```
 
+#### [→ Codepen example](https://codepen.io/haensl/pen/eYJBKEZ)
 
 ## [Changelog](CHANGELOG.md)
 
