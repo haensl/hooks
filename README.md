@@ -45,7 +45,39 @@ const DebouncedButton = () => {
 
 ## Available hooks
 
+* [`useAnimationFrame`](#useAnimationFrame): animate a function.
 * [`useDebounce`](#useDeboune): debounce a function.
+
+### useAnimationFrame(fn)<a name="useAnimationFrame"></a>
+
+Uses [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) to animate `fn`.
+
+##### Example
+
+```javascript
+import React, { useState, useEffect } from 'react';
+import { useAnimationFrame } from '@haensl/hooks';
+
+const AnimatedTimer = () => {
+  const [seconds, setSeconds] = useState(0);
+  const [elapsed, setElapsed] = useState(0);
+
+  useAnimationFrame((dt) => {
+    setElapsed(elapsed + dt);
+  });
+
+  useEffect(() => {
+    if (elapsed >= 1000) {
+      setSeconds(seconds + 1);
+      setElapsed(elapsed - 1000);
+    }
+  }, [elapsed]);
+
+  return (
+    <span>{ seconds }</span>
+  );
+};
+```
 
 ### useDebounce(fn, debounceMs)<a name="useDebounce"></a>
 
@@ -54,6 +86,7 @@ Uses [memoization](https://reactjs.org/docs/hooks-reference.html#usememo) to deb
 ##### Example
 
 ```javascript
+import React from 'react';
 import { useDebounce } from '@haensl/hooks';
 
 const DebouncedButton = () => {

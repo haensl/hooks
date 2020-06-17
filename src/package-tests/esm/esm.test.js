@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { useDebounce } from '@haensl/hooks';
+import { useAnimationFrame, useDebounce } from '@haensl/hooks';
 
 describe('esm module test', () => {
   describe('useDebounce', () => {
@@ -14,6 +14,26 @@ describe('esm module test', () => {
           <button
             onClick={ handler }
           >click me</button>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
+  describe('useAnimationFrame', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        useAnimationFrame(jest.fn());
+
+        return (
+          <span>useAnimationFrame test</span>
         );
       };
     });

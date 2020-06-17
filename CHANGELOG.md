@@ -1,3 +1,6 @@
+## 1.1.0
+* [#6: Add useAnimationFrame hook.](https://github.com/haensl/hooks/issues/6)
+
 ## 1.0.0
 * [#4: Add useDebounce hook.](https://github.com/haensl/hooks/issues/4)
 * Add [throttle service](src/services/throttle).
