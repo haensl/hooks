@@ -345,7 +345,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/hooks
-      - extract-versions
+      - extract-changelog-version
       - run:
           name: publish github release
           working_directory: ~/hooks
