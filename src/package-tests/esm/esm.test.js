@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { useAnimationFrame, useDebounce, useOnScroll } from '@haensl/hooks';
+import { useAnimationFrame, useDebounce, useIsScrolling, useOnScroll } from '@haensl/hooks';
 
 describe('esm module test', () => {
   describe('useDebounce', () => {
@@ -54,6 +54,26 @@ describe('esm module test', () => {
 
         return (
           <span>useOnScroll test</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
+  describe('useIsScrolling', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const isScrolling = useIsScrolling();
+
+        return (
+          <span>useIsScrolling test. { isScrolling }</span>
         );
       };
     });

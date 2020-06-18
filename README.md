@@ -47,6 +47,7 @@ const DebouncedButton = () => {
 
 * [`useAnimationFrame`](#useAnimationFrame): animate a function.
 * [`useDebounce`](#useDeboune): debounce a function.
+* [`useIsScrolling`](#useIsScrolling): keep track of whether or not the user is scrolling.
 * [`useOnScroll`](#useOnScroll): subscribe to scroll events.
 
 ### useAnimationFrame(fn)<a name="useAnimationFrame"></a>
@@ -106,6 +107,27 @@ const DebouncedButton = () => {
 ```
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/eYJBKEZ)
+
+### useIsScrolling([el = window, scrollEndMs = 100])<a name="useIsScrolling"></a>
+
+Returns a `boolean` indicating whether or not the user is scrolling. You can subscribe to a specific element via the first argument, `el` _(default: `window`)_. End of scrolling is determined by no incoming scroll events for `scrollEndMs` milliseconds _(default: `100`)_. Please check the [example blow](#useIsScrollingExample) as well as the [Codepen example](https://codepen.io/haensl/pen/qBbqeWz)
+
+##### Example<a name=useIsScrollingExample>
+
+```javascript
+import React from 'react';
+import { useIsScrolling } from '@haensl/hooks';
+
+const UserScrollTracker = () => {
+  const isScrolling = useIsScrolling();
+
+  return (
+    <span>The user is currently { isScrolling ? '' : 'not' } scrolling</span>
+  );
+};
+```
+
+#### [→ Codepen example](https://codepen.io/haensl/pen/qBbqeWz)
 
 ### useOnScroll(fn, [el = window])<a name="useOnScroll"></a>
 
