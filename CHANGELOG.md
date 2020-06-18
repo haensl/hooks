@@ -1,3 +1,6 @@
+## 1.3.1
+* Do not use `node` to extract version when publishing Github release.
+
 ## 1.3.0
 * [#11: Add useIsScrolling hook.](https://github.com/haensl/hooks/issues/11)
 * Add automated Github release publishing.
