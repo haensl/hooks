@@ -1,5 +1,6 @@
 ## 1.3.0
 * [#11: Add useIsScrolling hook.](https://github.com/haensl/hooks/issues/11)
+* Add automated Github release publishing.
 
 ## 1.2.0
 * [#10: Add useOnScroll hook.](https://github.com/haensl/hooks/issues/10)

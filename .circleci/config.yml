@@ -122,6 +122,9 @@ workflows:
       - package-test-esm-js:
           requires:
             - publish
+      - publish-github-release:
+          requires:
+            - package-test-esm-js
 
 jobs:
   lint:
@@ -336,3 +339,19 @@ jobs:
           path: test-results
       - package-information
 
+  publish-github-release:
+    docker:
+      - image: cibuilds/github
+    steps:
+      - attach_workspace:
+          at: ~/hooks
+      - extract-versions
+      - run:
+          name: publish github release
+          working_directory: ~/hooks
+          command: |
+            cp ./haensl-hooks.tgz ./haensl-hooks-${VERSION}.tgz
+            CHANGES=$(awk "/## ${VERSION}/,/^$/" CHANGELOG.md)
+            echo "Publishing release v${VERSION} to Github.\nChanges:"
+            echo $CHANGES
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -n "v${VERSION}" -b "${CHANGES}" "v${VERSION}" ./haensl-hooks-${VERSION}.tgz
