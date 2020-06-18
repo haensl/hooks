@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { useDebounce, useAnimationFrame } from '@haensl/hooks';
+import { useDebounce, useAnimationFrame, useOnScroll } from '@haensl/hooks';
 
 describe('cjs module test', () => {
   let container;
@@ -42,6 +42,28 @@ describe('cjs module test', () => {
 
         return (
           <span>useAnimationFrame test</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
+  });
+
+  describe('useOnScroll', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        useOnScroll(jest.fn());
+
+        return (
+          <span>useOnScroll test</span>
         );
       };
     });

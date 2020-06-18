@@ -47,10 +47,11 @@ const DebouncedButton = () => {
 
 * [`useAnimationFrame`](#useAnimationFrame): animate a function.
 * [`useDebounce`](#useDeboune): debounce a function.
+* [`useOnScroll`](#useOnScroll): subscribe to scroll events.
 
-### useAnimationFrame((deltaMs) => {})<a name="useAnimationFrame"></a>
+### useAnimationFrame(fn)<a name="useAnimationFrame"></a>
 
-Uses [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) to animate a function. The callback is passed one single argument, the time delta in milliseconds that has passed between this and the last call. Please check the [example](#useAnimationFrameExample) below as well as the [Codepen example](https://codepen.io/haensl/pen/GRoNGNB).
+Uses [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) to animate a function `fn`. The callback is passed one single argument, the time delta in milliseconds that has passed between this and the last call. Please check the [example](#useAnimationFrameExample) below as well as the [Codepen example](https://codepen.io/haensl/pen/GRoNGNB).
 
 ##### Example<a name="useAnimationFrameExample"></a>
 
@@ -105,6 +106,34 @@ const DebouncedButton = () => {
 ```
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/eYJBKEZ)
+
+### useOnScroll(fn, [el = window])<a name="useOnScroll"></a>
+
+Subscribes to [`scroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event) events on the given element `el` _(default: `window`)_. The callback function `fn` is passed the [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event). Please check the [example below](#useOnScrollExample) as well as the [Codepen example](https://codepen.io/haensl/pen/wvMoLJK).
+
+##### Example
+
+```javascript
+import React, { useState } from 'react';
+import { useOnScroll } from '@haensl/hooks';
+
+const WindowScrollTracker = () => {
+  const [windowScroll, setWindowScroll] = useState(0);
+
+  useOnScroll(() => {
+    setWindowScroll(window.scrollY);
+  });
+
+  return (
+    <div className="WindowScrollTracker">
+      <span>Window has scrolled down</span>
+      <span>{ windowScroll }px</span>
+    </div>
+  );
+};
+```
+
+#### [→ Codepen example](https://codepen.io/haensl/pen/wvMoLJK)
 
 ## [Changelog](CHANGELOG.md)
 

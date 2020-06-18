@@ -1,3 +1,7 @@
+## 1.2.0
+* [#10: Add useOnScroll hook.](https://github.com/haensl/hooks/issues/10)
+* Update dependencies.
+
 ## 1.1.1
 * [#8: Improve documentation for function argument of useAnimationFrame.](https://github.com/haensl/hooks/issues/8)
 * Add Codepen examples for useAnimationFrame and useDebounce.
