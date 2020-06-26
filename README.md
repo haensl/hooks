@@ -46,6 +46,7 @@ const DebouncedButton = () => {
 ## Available hooks
 
 * [`useAnimationFrame`](#useAnimationFrame): animate a function.
+* [`useBoundingClientRect`](#useBoundingClientRect): keep track of a container's [DOM rectangle](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect).
 * [`useDebounce`](#useDeboune): debounce a function.
 * [`useIsScrolling`](#useIsScrolling): keep track of whether or not the user is scrolling.
 * [`useOnScroll`](#useOnScroll): subscribe to scroll events.
@@ -83,6 +84,39 @@ const AnimatedTimer = () => {
 ```
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/GRoNGNB)
+
+### useBoundingClientRect(ref, [debounceMs = 25])<a name="useBoundingClientRect"></a>
+Returns the DOM rectangle _(initially `null`)_ as returned by [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for the given container `ref`. Changes are debounced by 25 milliseconds by default. Customize the debounce interval via the optional `debounceMs` argument. Please check out the [example below](#useBoundingClientRectExample) as well as the [Codepen example](https://codepen.io/haensl/pen/YzwxqOq).
+
+#### Example
+```javascript
+import React, { useRef } from 'react';
+import { useBoundingClientRect } from '@haensl/hooks';
+
+const RectTracker = () => {
+  const ref = useRef();
+  const containerRect = useBoundingClientRect(ref);
+
+  if (!containerRect) {
+    return (
+      <div ref={ ref }>
+        <span>no container rect</span>
+      </div>
+    );
+  }
+
+  return (
+    <div ref={ ref }>
+      <span>Container rect:</span>
+      <span>Width: {containerRect.width}</span>
+      <span>Height: {containerRect.height}</span>
+    </div>
+  );
+};
+```
+
+#### [→ Codepen example](https://codepen.io/haensl/pen/YzwxqOq)
+
 
 ### useDebounce(fn, debounceMs)<a name="useDebounce"></a>
 

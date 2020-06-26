@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { render } from '@testing-library/react';
-import { useAnimationFrame, useDebounce, useIsScrolling, useOnScroll, useWindowSize } from '@haensl/hooks';
+import ResizeObserver from 'resize-observer-polyfill';
+import { useAnimationFrame, useBoundingClientRect, useDebounce, useIsScrolling, useOnScroll, useWindowSize } from '@haensl/hooks';
 
 describe('esm module test', () => {
   describe('useDebounce', () => {
     let TestComponent;
 
     beforeAll(() => {
+      global.ResizeObserver = ResizeObserver;
       TestComponent = () => {
         const handler = useDebounce(jest.fn(), 10);
 
@@ -94,6 +96,37 @@ describe('esm module test', () => {
 
         return (
           <span>useWindowSize test. { windowSize }</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
+  describe('useBoundingClientRect', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const ref = useRef();
+        const containerRect = useBoundingClientRect(ref);
+
+        return (
+          <div ref={ref}>
+            <span>useBoundingClientRect test</span>
+            { containerRect && (
+              <div>
+                <span>{ containerRect.left }</span>
+                <span>{ containerRect.top }</span>
+                <span>{ containerRect.width }</span>
+                <span>{ containerRect.height }</span>
+              </div>
+            )}
+          </div>
         );
       };
     });
