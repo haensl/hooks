@@ -134,10 +134,14 @@ describe('cjs module test', () => {
         return (
           <div ref={ ref }>
             <span>useBoundingClientRect test.</span>
-            <span>{ containerRect.left }</span>
-            <span>{ containerRect.top }</span>
-            <span>{ containerRect.width }</span>
-            <span>{ containerRect.height }</span>
+            { containerRect && (
+              <div>
+                <span>{ containerRect.left }</span>
+                <span>{ containerRect.top }</span>
+                <span>{ containerRect.width }</span>
+                <span>{ containerRect.height }</span>
+              </div>
+            )}
           </div>
         );
       };
