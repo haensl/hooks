@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { render } from '@testing-library/react';
-import { useAnimationFrame, useDebounce, useIsScrolling, useOnScroll, useWindowSize } from '@haensl/hooks';
+import { useAnimationFrame, useBoundingClientRect, useDebounce, useIsScrolling, useOnScroll, useWindowSize } from '@haensl/hooks';
 
 describe('esm module test', () => {
   describe('useDebounce', () => {
@@ -94,6 +94,30 @@ describe('esm module test', () => {
 
         return (
           <span>useWindowSize test. { windowSize }</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
+  describe('useBoundingClientRect', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const ref = useRef();
+        const containerRect = useBoundingClientRect(ref);
+
+        return (
+          <div ref={ref}>
+            <span>useBoundingClientRect test</span>
+            <span>{ containerRect }</span>
+          </div>
         );
       };
     });

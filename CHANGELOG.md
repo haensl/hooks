@@ -1,3 +1,6 @@
+## 1.5.0
+* [#16: Add useBoundingClientRect hook.](https://github.com/haensl/hooks/issues/16)
+
 ## 1.4.0
 * [#14: Add useWindowSize hook.](https://github.com/haensl/hooks/issues/14)
 * Update dependencies.

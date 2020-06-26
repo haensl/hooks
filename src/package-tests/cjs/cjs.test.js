@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { useDebounce, useAnimationFrame, useIsScrolling, useOnScroll, useWindowSize } from '@haensl/hooks';
+import { useDebounce, useBoundingClientRect, useAnimationFrame, useIsScrolling, useOnScroll, useWindowSize } from '@haensl/hooks';
 
 describe('cjs module test', () => {
   let container;
@@ -108,6 +108,31 @@ describe('cjs module test', () => {
 
         return (
           <span>useWindoSize test. { windowSize }</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
+  });
+
+  describe('useBoundingClientRect', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const ref = useRef();
+        const containerRect = useBoundingClientRect(ref);
+
+        return (
+          <div ref={ ref }>
+            <span>useBoundingClientRect test. { containerRect }</span>
+          </div>
         );
       };
     });
