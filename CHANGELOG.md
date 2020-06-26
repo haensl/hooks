@@ -1,3 +1,7 @@
+## 1.4.0
+* [#14: Add useWindowSize hook.](https://github.com/haensl/hooks/issues/14)
+* Update dependencies.
+
 ## 1.3.1
 * Do not use `node` to extract version when publishing Github release.
 
