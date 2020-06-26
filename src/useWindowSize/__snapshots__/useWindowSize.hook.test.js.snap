@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useWindowSize renders as expected 1`] = `
+<span>
+  no window size
+</span>
+`;
+
+exports[`useWindowSize when the window is resized renders as expected 1`] = `
+<TestComponent>
+  <span>
+    150,200
+  </span>
+</TestComponent>
+`;

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { useDebounce, useAnimationFrame, useIsScrolling, useOnScroll } from '@haensl/hooks';
+import { useDebounce, useAnimationFrame, useIsScrolling, useOnScroll, useWindowSize } from '@haensl/hooks';
 
 describe('cjs module test', () => {
   let container;
@@ -86,6 +86,28 @@ describe('cjs module test', () => {
 
         return (
           <span>useIsScrolling test. { isScrolling }</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
+  });
+
+  describe('useWindowSize', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const windowSize = useWindowSize();
+
+        return (
+          <span>useWindoSize test. { windowSize }</span>
         );
       };
     });
