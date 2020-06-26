@@ -1,3 +1,6 @@
+## 1.5.1
+* [#18: Update useBoundingClientRect when window is resized, too.](https://github.com/haensl/hooks/issues/18)
+
 ## 1.5.0
 * [#16: Add useBoundingClientRect hook.](https://github.com/haensl/hooks/issues/16)
 

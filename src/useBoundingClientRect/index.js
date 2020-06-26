@@ -1,8 +1,9 @@
 import { useState, useCallback, useLayoutEffect } from 'react';
-import { useDebounce } from '../';
+import { useDebounce, useWindowSize } from '../';
 
 const useBoundingClientRect = (ref, debounceMs = 25) => {
   const [boundingClientRect, setBoundingClientRect] = useState(null);
+  const windowSize = useWindowSize(debounceMs);
 
   const onResize = useCallback(({ target }) => {
     if (!target) {
@@ -29,6 +30,17 @@ const useBoundingClientRect = (ref, debounceMs = 25) => {
       resizeObserver.unobserve(current);
     };
   }, [ ref, onResize, onResizeDebounced]);
+
+  useLayoutEffect(() => {
+    const current = ref && ref.current;
+    if (!current || typeof onResize !== 'function') {
+      return;
+    }
+
+    onResize({
+      target: current
+    });
+  }, [ref, onResize, windowSize]);
 
   return boundingClientRect;
 };
