@@ -86,7 +86,7 @@ const AnimatedTimer = () => {
 #### [→ Codepen example](https://codepen.io/haensl/pen/GRoNGNB)
 
 ### useBoundingClientRect(ref, [debounceMs = 25])<a name="useBoundingClientRect"></a>
-Returns the DOM rectangle as returned by [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for the given container `ref`. Changes are debounced by 25 milliseconds by default. Customize the debounce interval via the optional `debounceMs` argument. Please check out the [example below](#useBoundingClientRectExample) as well as the [Codepen example](https://codepen.io/haensl/pen/YzwxqOq).
+Returns the DOM rectangle _(initially `null`)_ as returned by [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for the given container `ref`. Changes are debounced by 25 milliseconds by default. Customize the debounce interval via the optional `debounceMs` argument. Please check out the [example below](#useBoundingClientRectExample) as well as the [Codepen example](https://codepen.io/haensl/pen/YzwxqOq).
 
 #### Example
 ```javascript
