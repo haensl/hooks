@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
+import ResizeObserver from 'resize-observer-polyfill';
 import { useDebounce, useBoundingClientRect, useAnimationFrame, useIsScrolling, useOnScroll, useWindowSize } from '@haensl/hooks';
 
 describe('cjs module test', () => {
@@ -7,6 +8,7 @@ describe('cjs module test', () => {
 
   beforeAll(() => {
     container = document.createElement('div');
+    global.ResizeObserver = ResizeObserver;
   });
 
   describe('useDebounce', () => {

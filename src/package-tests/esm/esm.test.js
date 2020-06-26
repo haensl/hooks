@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { render } from '@testing-library/react';
+import ResizeObserver from 'resize-observer-polyfill';
 import { useAnimationFrame, useBoundingClientRect, useDebounce, useIsScrolling, useOnScroll, useWindowSize } from '@haensl/hooks';
 
 describe('esm module test', () => {
@@ -7,6 +8,7 @@ describe('esm module test', () => {
     let TestComponent;
 
     beforeAll(() => {
+      global.ResizeObserver = ResizeObserver;
       TestComponent = () => {
         const handler = useDebounce(jest.fn(), 10);
 
