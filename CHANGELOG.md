@@ -1,3 +1,6 @@
+## 1.5.2
+* [#20: Only add event listeners if element is defined.](https://github.com/haensl/hooks/issues/20)
+
 ## 1.5.1
 * [#18: Update useBoundingClientRect when window is resized, too.](https://github.com/haensl/hooks/issues/18)
 

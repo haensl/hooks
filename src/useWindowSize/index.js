@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { platform } from '@haensl/services';
 import { useDebounce } from '../';
 
 const useWindowSize = (debounceMs = 25) => {
@@ -12,6 +13,10 @@ const useWindowSize = (debounceMs = 25) => {
   }, debounceMs);
 
   useEffect(() => {
+    if (!platform.hasWindow) {
+      return;
+    }
+
     window.addEventListener('resize', onResize);
     onResize();
     return () => {

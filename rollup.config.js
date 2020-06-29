@@ -1,13 +1,14 @@
 const nodeResolve = require('@rollup/plugin-node-resolve').default;
+const babel = require('@rollup/plugin-babel').default;
 const localResolve = require('@haensl/rollup-plugin-local-resolve');
-const babel = require('rollup-plugin-babel');
 const commonJS = require('@rollup/plugin-commonjs');
 const external = require('rollup-plugin-peer-deps-external');
 const minify = require('rollup-plugin-terser').terser;
 const pkg = require('./package');
 
 const globals = {
-  react: 'React'
+  react: 'React',
+  '@haensl/services': 'services'
 };
 
 const copyright = `// ${pkg.homepage} v${pkg.version} Copyright ${(new Date()).getFullYear()} ${pkg.author.name} <${pkg.author.email}>`;
@@ -35,7 +36,7 @@ module.exports = [
           'node_modules/**',
           '**/*.test.js'
         ],
-        runtimeHelpers: true,
+        babelHelpers: 'bundled',
         presets: [
           [
             '@babel/preset-env',
@@ -67,16 +68,14 @@ module.exports = [
       }
     ],
     plugins: [
-      external({
-        includeDependencies: true
-      }),
+      external(),
       babel({
         babelrc: false,
         exclude: [
           'node_modules/**',
           '**/*.test.js'
         ],
-        runtimeHelpers: true,
+        babelHelpers: 'runtime',
         presets: [
           [
             '@babel/preset-env',
@@ -88,6 +87,9 @@ module.exports = [
             }
           ],
           '@babel/preset-react'
+        ],
+        plugins: [
+          '@babel/plugin-transform-runtime'
         ]
       }),
       commonJS({
@@ -111,16 +113,14 @@ module.exports = [
       }
     ],
     plugins: [
-      external({
-        includeDependencies: true
-      }),
+      external(),
       babel({
         babelrc: false,
         exclude: [
           'node_modules/**',
           '**/*.test.js'
         ],
-        runtimeHelpers: true,
+        babelHelpers: 'runtime',
         presets: [
           [
             '@babel/preset-env',
@@ -132,6 +132,9 @@ module.exports = [
             }
           ],
           '@babel/preset-react'
+        ],
+        plugins: [
+          '@babel/plugin-transform-runtime'
         ]
       }),
       commonJS({
