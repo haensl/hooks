@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { render } from '@testing-library/react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useAnimationFrame, useBoundingClientRect, useDebounce, useIsScrolling, useOnScroll, useWindowSize } from '@haensl/hooks';
+import { useAnimationFrame, useBoundingClientRect, useDebounce, useIsScrolling, useOnScroll, useWindowScroll, useWindowSize } from '@haensl/hooks';
 
 describe('esm module test', () => {
   describe('useDebounce', () => {
@@ -87,6 +87,34 @@ describe('esm module test', () => {
     });
   });
 
+  describe('useWindowScroll', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const windowScroll = useWindowScroll();
+
+        return (
+          <div>
+            <span>useWindowScroll test.</span>
+            { windowScroll && (
+              <div>
+                <span>{ windowScroll.x }</span>
+                <span>{ windowScroll.y }</span>
+              </div>
+            )}
+          </div>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
   describe('useWindowSize', () => {
     let TestComponent;
 
@@ -95,7 +123,15 @@ describe('esm module test', () => {
         const windowSize = useWindowSize();
 
         return (
-          <span>useWindowSize test. { windowSize }</span>
+          <div>
+            <span>useWindowSize test.</span>
+            { windowSize && (
+              <div>
+                <span>{ windowSize.width }</span>
+                <span>{ windowSize.height }</span>
+              </div>
+            )}
+          </div>
         );
       };
     });
