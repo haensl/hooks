@@ -1,3 +1,6 @@
+## 1.6.0
+* [#22: Add useWindowScroll hook.](https://github.com/haensl/hooks/issues/22)
+
 ## 1.5.2
 * [#20: Only add event listeners if element is defined.](https://github.com/haensl/hooks/issues/20)
 

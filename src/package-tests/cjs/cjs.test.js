@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useDebounce, useBoundingClientRect, useAnimationFrame, useIsScrolling, useOnScroll, useWindowSize } from '@haensl/hooks';
+import { useDebounce, useBoundingClientRect, useAnimationFrame, useIsScrolling, useOnScroll, useWindowScroll, useWindowSize } from '@haensl/hooks';
 
 describe('cjs module test', () => {
   let container;
@@ -88,6 +88,36 @@ describe('cjs module test', () => {
 
         return (
           <span>useIsScrolling test. { isScrolling }</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
+  });
+
+  describe('useWindowScroll', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const windowScroll = useWindowScroll();
+
+        return (
+          <div>
+            <span>useWindoSize test.</span>
+            { windowScroll && (
+              <div>
+                <span>{ windowScroll.x }</span>
+                <span>{ windowScroll.y }</span>
+              </div>
+            )}
+          </div>
         );
       };
     });
