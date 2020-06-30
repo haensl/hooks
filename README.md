@@ -50,6 +50,7 @@ const DebouncedButton = () => {
 * [`useDebounce`](#useDeboune): debounce a function.
 * [`useIsScrolling`](#useIsScrolling): keep track of whether or not the user is scrolling.
 * [`useOnScroll`](#useOnScroll): subscribe to scroll events.
+* [`useWindowScroll`](#useWindowScroll): keep track of the `window`'s scroll position.
 * [`useWindowSize`](#useWindowSize): keep track of the `window`'s size.
 
 ### useAnimationFrame(fn)<a name="useAnimationFrame"></a>
@@ -192,10 +193,41 @@ const WindowScrollTracker = () => {
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/wvMoLJK)
 
-### useWindowSize([debounceMs = 25])<a name="useWindowSize"></a>
-Returns an object _(initially `null`)_ with properties `width` and `height` reflecting the `innerWidth` and `innerHeight` of the `window` object. Size updates are by default debounced by 25 milliseconds. This debounce interval can be customized via the optional `debounceMs` argument. Please check the [example below](#useWindowScrollExample) as well as the [Codepen example](https://codepen.io/haensl/pen/mdVMVxY).
+### useWindowScroll([debounceMs = 25])<a name="useWindowScroll"></a>
+Returns an object _(`null` if there is no `window`)_ with properties `x` and `y` reflecting the the scroll position of the `window` or `document`. Scroll position updates are by default debounced by 25 milliseconds. This debounce interval can be customized via the optional `debounceMs` argument. Please check the [example below](#useWindowScrollExample) as well as the [Codepen example]().
 
-#### Example
+#### Example<a name="useWindowScrollExample"></a>
+
+```javascript
+import React, { useState } from 'react';
+import { useWindowScroll } from '@haensl/hooks';
+
+const windowScrollTracker = () => {
+  const windowScroll = useWindowScroll();
+
+  if (!windowScroll) {
+    return (
+      <div className="WindowScrollTracker">
+        no scroll poistion
+      </div>
+    );
+  }
+
+  return (
+    <div className="WindowScrollTracker">
+      <span>Scroll x: {windowScroll.x}</span>
+      <span>Scroll y: {windowScroll.y}</span>
+    </div>
+  );
+};
+```
+
+#### [→ Codepen example](https://codepen.io/haensl/pen/mdVMVxY)
+
+### useWindowSize([debounceMs = 25])<a name="useWindowSize"></a>
+Returns an object _(initially `null`)_ with properties `width` and `height` reflecting the `innerWidth` and `innerHeight` of the `window` object. Size updates are by default debounced by 25 milliseconds. This debounce interval can be customized via the optional `debounceMs` argument. Please check the [example below](#useWindowSizeExample) as well as the [Codepen example](https://codepen.io/haensl/pen/mdVMVxY).
+
+#### Example<a name="useWindowSizeExample"></a>
 
 ```javascript
 import React, { useState } from 'react';
