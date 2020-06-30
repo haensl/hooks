@@ -1,3 +1,7 @@
+## 1.6.2
+* [#25: Use debounce from `@haensl/services`](https://github.com/haensl/hooks/issues/25)
+* Update dependencies.
+
 ## 1.6.1
 * Add Codepen links for useWindowScroll example.
 

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { debounce } from '../services/throttle';
+import { throttle } from '@haensl/services';
 
 const useDebounce = (fn, debounceMs) => {
   if (typeof fn !== 'function') {
@@ -11,7 +11,7 @@ const useDebounce = (fn, debounceMs) => {
   }
 
   return useMemo(
-    () => debounce(fn, parseInt(debounceMs, 10)),
+    () => throttle.debounce(fn, parseInt(debounceMs, 10)),
     [fn, debounceMs]
   );
 };
