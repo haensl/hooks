@@ -1,3 +1,6 @@
+## 1.6.3
+* [#27: Fix useWindowSize leak.](https://github.com/haensl/hooks/issues/27)
+
 ## 1.6.2
 * [#25: Use debounce from `@haensl/services`](https://github.com/haensl/hooks/issues/25)
 * Update dependencies.

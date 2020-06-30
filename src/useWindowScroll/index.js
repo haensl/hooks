@@ -6,13 +6,13 @@ const useWindowScroll = (debounceMs = 25) => {
   const [scrollPosition, setScrollPosition]
     = useState(platform.scrollPosition());
 
-  const handler = useCallback(() => {
+  const onScroll = useCallback(() => {
     setScrollPosition(platform.scrollPosition());
   }, []);
 
-  const handlerDebounced = useDebounce(handler, debounceMs);
+  const onScrollDebounced = useDebounce(onScroll, debounceMs);
 
-  useOnScroll(handlerDebounced);
+  useOnScroll(onScrollDebounced);
 
   return scrollPosition;
 };
