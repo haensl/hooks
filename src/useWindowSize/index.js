@@ -1,28 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { platform } from '@haensl/services';
 import { useDebounce } from '../';
 
 const useWindowSize = (debounceMs = 25) => {
   const [size, setSize] = useState(null);
-
-  const onResize = useDebounce(() => {
+  const onResize = useCallback(() => {
     setSize({
       width: window.innerWidth,
       height: window.innerHeight
     });
-  }, debounceMs);
+  }, []);
+
+  const onResizeDebounced = useDebounce(onResize, debounceMs);
 
   useEffect(() => {
     if (!platform.hasWindow) {
       return;
     }
 
-    window.addEventListener('resize', onResize);
+    window.addEventListener('resize', onResizeDebounced);
     onResize();
     return () => {
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener('resize', onResizeDebounced);
     };
-  }, [onResize]);
+  }, [onResize, onResizeDebounced]);
 
   return size;
 };
