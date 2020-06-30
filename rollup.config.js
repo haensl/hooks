@@ -7,8 +7,7 @@ const minify = require('rollup-plugin-terser').terser;
 const pkg = require('./package');
 
 const globals = {
-  react: 'React',
-  '@haensl/services': 'services'
+  react: 'React'
 };
 
 const copyright = `// ${pkg.homepage} v${pkg.version} Copyright ${(new Date()).getFullYear()} ${pkg.author.name} <${pkg.author.email}>`;
@@ -27,9 +26,7 @@ module.exports = [
       indent: false
     },
     plugins: [
-      external({
-        includeDependencies: true
-      }),
+      external(),
       babel({
         babelrc: false,
         exclude: [
