@@ -194,7 +194,7 @@ const WindowScrollTracker = () => {
 #### [→ Codepen example](https://codepen.io/haensl/pen/wvMoLJK)
 
 ### useWindowScroll([debounceMs = 25])<a name="useWindowScroll"></a>
-Returns an object _(`null` if there is no `window`)_ with properties `x` and `y` reflecting the the scroll position of the `window` or `document`. Scroll position updates are by default debounced by 25 milliseconds. This debounce interval can be customized via the optional `debounceMs` argument. Please check the [example below](#useWindowScrollExample) as well as the [Codepen example]().
+Returns an object _(`null` if there is no `window`)_ with properties `x` and `y` reflecting the the scroll position of the `window` or `document`. Scroll position updates are by default debounced by 25 milliseconds. This debounce interval can be customized via the optional `debounceMs` argument. Please check the [example below](#useWindowScrollExample) as well as the [Codepen example](https://codepen.io/haensl/pen/VweMJGm).
 
 #### Example<a name="useWindowScrollExample"></a>
 
@@ -222,7 +222,7 @@ const windowScrollTracker = () => {
 };
 ```
 
-#### [→ Codepen example](https://codepen.io/haensl/pen/mdVMVxY)
+#### [→ Codepen example](https://codepen.io/haensl/pen/VweMJGm)
 
 ### useWindowSize([debounceMs = 25])<a name="useWindowSize"></a>
 Returns an object _(initially `null`)_ with properties `width` and `height` reflecting the `innerWidth` and `innerHeight` of the `window` object. Size updates are by default debounced by 25 milliseconds. This debounce interval can be customized via the optional `debounceMs` argument. Please check the [example below](#useWindowSizeExample) as well as the [Codepen example](https://codepen.io/haensl/pen/mdVMVxY).
