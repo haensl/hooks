@@ -1,3 +1,6 @@
+## 1.6.5
+* [#31: Update dependencies.](https://github.com/haensl/hooks/issues/31)
+
 ## 1.6.4
 * Include dependencies in UMD bundle.
 
