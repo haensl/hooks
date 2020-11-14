@@ -14,7 +14,7 @@ export const useOnScroll = _useOnScroll;
 export const useWindowScroll = _useWindowScroll;
 export const useWindowSize = _useWindowSize;
 
-export default {
+const exports = {
   useAnimationFrame,
   useBoundingClientRect,
   useDebounce,
@@ -23,3 +23,5 @@ export default {
   useWindowScroll,
   useWindowSize
 };
+
+export default exports;
