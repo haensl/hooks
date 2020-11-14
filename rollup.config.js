@@ -53,6 +53,7 @@ module.exports = [
     ]
   },
   {
+    external: [/@babel\/runtime/],
     input: './src/index.js',
     output: [
       {
@@ -97,6 +98,7 @@ module.exports = [
     ]
   },
   {
+    external: [/@babel\/runtime/],
     input: './src/index.js',
     output: [
       {

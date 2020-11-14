@@ -1,3 +1,7 @@
+## 1.6.6
+* [#33: Update dependencies.](https://github.com/haensl/hooks/issues/33)
+* Externalize `@babel/runtime` for ESM and CJS modules in rollup config.
+
 ## 1.6.5
 * [#31: Update dependencies.](https://github.com/haensl/hooks/issues/31)
 
