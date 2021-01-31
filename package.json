@@ -110,8 +110,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "CI=true npm run lint && npm run test:ci",
-      "pre-push": "CI=true npm run lint && npm run test:ci"
+      "pre-commit": "CI=true npm run lint && npm run test:ci"
     }
   },
   "devDependencies": {
