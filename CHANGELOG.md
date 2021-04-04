@@ -1,3 +1,6 @@
+## 1.6.8
+* [#39: Update dependencies.](https://github.com/haensl/hooks/issues/39)
+
 ## 1.6.7
 * [#36: Update dependencies.](https://github.com/haensl/hooks/issues/36)
 * Remove pre-push hook.
