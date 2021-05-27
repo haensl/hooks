@@ -364,4 +364,4 @@ jobs:
             CHANGES=$(awk "/## ${VERSION}/,/^$/" CHANGELOG.md)
             echo "Publishing release v${VERSION} to Github.\nChanges:"
             echo $CHANGES
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -n "v${VERSION}" -b "${CHANGES}" "v${VERSION}" ./haensl-hooks-${VERSION}.tgz
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -n "v${VERSION}" -b "${CHANGES}" "v${VERSION}" ./haensl-react-hooks-${VERSION}.tgz
