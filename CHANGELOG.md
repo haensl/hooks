@@ -1,3 +1,7 @@
+## 1.7.0
+* [#44: Move package.](https://github.com/haensl/hooks/issues/44)
+* Update dependencies.
+
 ## 1.6.8
 * [#39: Update dependencies.](https://github.com/haensl/hooks/issues/39)
 
