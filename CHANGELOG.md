@@ -1,3 +1,6 @@
+## 1.7.1
+* [#44: Fix github release.](https://github.com/haensl/hooks/issues/44)
+
 ## 1.7.0
 * [#44: Move package.](https://github.com/haensl/hooks/issues/44)
 * Update dependencies.
