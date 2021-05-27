@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { render } from '@testing-library/react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useAnimationFrame, useBoundingClientRect, useDebounce, useIsScrolling, useOnScroll, useWindowScroll, useWindowSize } from '@haensl/hooks';
+import { useAnimationFrame, useBoundingClientRect, useDebounce, useIsScrolling, useOnScroll, useWindowScroll, useWindowSize } from '@haensl/react-hooks';
 
 describe('esm module test', () => {
   describe('useDebounce', () => {

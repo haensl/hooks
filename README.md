@@ -1,10 +1,10 @@
-# @haensl/hooks
+# @haensl/react-hooks
 
 Assorted React hooks.
 
-[![NPM](https://nodei.co/npm/@haensl%2Fhooks.png?downloads=true)](https://nodei.co/npm/@haensl%2Fhooks/)
+[![NPM](https://nodei.co/npm/@haensl%2Fhooks.png?downloads=true)](https://nodei.co/npm/@haensl%2Freact-hooks/)
 
-[![npm version](https://badge.fury.io/js/@haensl%2Fhooks.svg)](http://badge.fury.io/js/@haensl%2Fhooks)
+[![npm version](https://badge.fury.io/js/@haensl%2Fhooks.svg)](http://badge.fury.io/js/@haensl%2Freact-hooks)
 [![CircleCI](https://circleci.com/gh/haensl/hooks.svg?style=svg)](https://circleci.com/gh/haensl/hooks)
 
 ## Installation<a name="installation"></a>
@@ -12,23 +12,23 @@ Assorted React hooks.
 ### Via `npm`
 
 ```bash
-$ npm install -S @haensl/hooks
+$ npm install -S @haensl/react-hooks
 ```
 
 ### Via `yarn`
 
 ```bash
-$ yarn add @haensl/hooks
+$ yarn add @haensl/react-hooks
 ```
 
 ## Usage
 
-1. [Install @haensl/hooks](#installation)
+1. [Install @haensl/react-hooks](#installation)
 
 2. Use hooks in your components:
 
 ```javascript
-import { useDebounce } from '@haensl/hooks';
+import { useDebounce } from '@haensl/react-hooks';
 
 const DebouncedButton = () => {
   const handler = useDebounce(() => {
@@ -61,7 +61,7 @@ Uses [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/
 
 ```javascript
 import React, { useState, useEffect } from 'react';
-import { useAnimationFrame } from '@haensl/hooks';
+import { useAnimationFrame } from '@haensl/react-hooks';
 
 const AnimatedTimer = () => {
   const [seconds, setSeconds] = useState(0);
@@ -92,7 +92,7 @@ Returns the DOM rectangle _(initially `null`)_ as returned by [`getBoundingClien
 #### Example
 ```javascript
 import React, { useRef } from 'react';
-import { useBoundingClientRect } from '@haensl/hooks';
+import { useBoundingClientRect } from '@haensl/react-hooks';
 
 const RectTracker = () => {
   const ref = useRef();
@@ -127,7 +127,7 @@ Uses [memoization](https://reactjs.org/docs/hooks-reference.html#usememo) to deb
 
 ```javascript
 import React from 'react';
-import { useDebounce } from '@haensl/hooks';
+import { useDebounce } from '@haensl/react-hooks';
 
 const DebouncedButton = () => {
   const handler = useDebounce(() => {
@@ -152,7 +152,7 @@ Returns a `boolean` indicating whether or not the user is scrolling. You can sub
 
 ```javascript
 import React from 'react';
-import { useIsScrolling } from '@haensl/hooks';
+import { useIsScrolling } from '@haensl/react-hooks';
 
 const UserScrollTracker = () => {
   const isScrolling = useIsScrolling();
@@ -173,7 +173,7 @@ Subscribes to [`scroll`](https://developer.mozilla.org/en-US/docs/Web/API/Elemen
 
 ```javascript
 import React, { useState } from 'react';
-import { useOnScroll } from '@haensl/hooks';
+import { useOnScroll } from '@haensl/react-hooks';
 
 const WindowScrollTracker = () => {
   const [windowScroll, setWindowScroll] = useState(0);
@@ -200,7 +200,7 @@ Returns an object _(`null` if there is no `window`)_ with properties `x` and `y`
 
 ```javascript
 import React, { useState } from 'react';
-import { useWindowScroll } from '@haensl/hooks';
+import { useWindowScroll } from '@haensl/react-hooks';
 
 const windowScrollTracker = () => {
   const windowScroll = useWindowScroll();
@@ -231,7 +231,7 @@ Returns an object _(initially `null`)_ with properties `width` and `height` refl
 
 ```javascript
 import React, { useState } from 'react';
-import { useWindowSize } from '@haensl/hooks';
+import { useWindowSize } from '@haensl/react-hooks';
 
 const WindowSizeTracker = () => {
   const windowSize = useWindowSize();
