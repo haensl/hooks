@@ -175,7 +175,7 @@ jobs:
             NODE_ENV: 'production'
           command: |
             npm pack
-            mv haensl-hooks-${VERSION}.tgz haensl-hooks.tgz
+            mv haensl-react-hooks-${VERSION}.tgz haensl-react-hooks.tgz
       - store_artifacts:
           path: haensl-hooks.tgz
       - persist_to_workspace:
@@ -189,7 +189,7 @@ jobs:
             - package.json
             - package-lock.json
             - .npmignore
-            - haensl-hooks.tgz
+            - haensl-react-hooks.tgz
 
   bundle-test-cjs-js:
     docker:
@@ -217,7 +217,7 @@ jobs:
           name: install module
           working_directory: /tmp/test-app
           command: |
-            npm i -S ~/hooks/haensl-hooks.tgz
+            npm i -S ~/hooks/haensl-react-hooks.tgz
       - save_cache:
           working_directory: /tmp/test-app
           paths:
@@ -254,7 +254,7 @@ jobs:
           name: install module
           working_directory: /tmp/esm-test
           command: |
-            npm i -S ~/hooks/haensl-hooks.tgz
+            npm i -S ~/hooks/haensl-react-hooks.tgz
       - run:
           name: copy esm package test
           working_directory: /tmp/esm-test
@@ -360,7 +360,7 @@ jobs:
           name: publish github release
           working_directory: ~/hooks
           command: |
-            cp ./haensl-hooks.tgz ./haensl-hooks-${VERSION}.tgz
+            cp ./haensl-react-hooks.tgz ./haensl-react-hooks-${VERSION}.tgz
             CHANGES=$(awk "/## ${VERSION}/,/^$/" CHANGELOG.md)
             echo "Publishing release v${VERSION} to Github.\nChanges:"
             echo $CHANGES
