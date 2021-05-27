@@ -26,7 +26,7 @@ commands:
           name: extract latest published version
           working_directory: ~/hooks
           command: |
-            LIVE_VERSION=$(npm show @haensl/hooks version || true)
+            LIVE_VERSION=$(npm show @haensl/react-hooks version || true)
             [ -z "${LIVE_VERSION}" ] && LIVE_VERSION='0.0.0'
             echo "export LIVE_VERSION=${LIVE_VERSION}" >> ${BASH_ENV}
             echo "latest published version: ${LIVE_VERSION}"
@@ -87,8 +87,8 @@ commands:
       - run:
           name: gather bundle information
           command: |
-            npm info @haensl/hooks@${VERSION} > ./bundle.info
-            tree -s node_modules/@haensl/hooks >> ./bundle.info
+            npm info @haensl/react-hooks@${VERSION} > ./bundle.info
+            tree -s node_modules/@haensl/react-hooks >> ./bundle.info
       - store_artifacts:
           path: bundle.info
 
@@ -333,7 +333,7 @@ jobs:
           name: install module
           working_directory: /tmp/esm-test
           command: |
-            npm i -S @haensl/hooks
+            npm i -S @haensl/react-hooks
       - run:
           name: copy esm package test
           working_directory: /tmp/esm-test
