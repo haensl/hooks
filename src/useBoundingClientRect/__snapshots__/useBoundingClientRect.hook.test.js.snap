@@ -12,7 +12,9 @@ exports[`useBoundingClientRect when the container is resized renders as expected
 <TestComponent>
   <div>
     <span>
+      0
       ,
+      0
       ,
       0
       ,
