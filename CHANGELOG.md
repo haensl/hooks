@@ -1,3 +1,6 @@
+## 1.7.5
+* [#56: Update dependencies.](https://github.com/haensl/hooks/issues/56)
+
 ## 1.7.4
 * [#53: Update dependencies.](https://github.com/haensl/hooks/issues/53)
 
