@@ -1,4 +1,6 @@
-## 1.7.7
+## 1.8.0
+* Add `useIsMounted` hook.
+* Migrate development to React 17.
 * [#60: Update dependencies.](https://github.com/haensl/hooks/issues/60)
 
 ## 1.7.6

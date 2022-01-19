@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { act } from 'react-dom/test-utils';
-import { shallow, mount } from 'enzyme';
+import { act, renderHook } from '@testing-library/react-hooks';
+import '@testing-library/jest-dom';
+
 import useBoundingClientRect from './';
 
 let currentResizeObserver;
@@ -29,59 +29,59 @@ class ResizeObserver {
   }
 }
 
+const mockRef = () => {
+  const node = document.createElement('div');
+  const getBoundingClientRect = jest.fn()
+    .mockReturnValue({
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      width: 0,
+      height: 0
+    });
+  node.getBoundingClientRect = getBoundingClientRect;
+  const ref = {
+    current: {
+      getDOMNode: () => node,
+      getBoundingClientRect
+    }
+  };
+
+  return ref;
+};
+
 describe('useBoundingClientRect', () => {
-  let TestComponent;
   let originalResizeObserver;
-  let containerRect;
 
   beforeAll(() => {
     jest.useFakeTimers();
     originalResizeObserver = global.ResizeObserver;
     global.ResizeObserver = ResizeObserver;
-    TestComponent = () => {
-      const ref = useRef();
-      containerRect = useBoundingClientRect(ref);
-
-      if (containerRect) {
-        return (
-          <div ref={ref}>
-            <span>{containerRect.x},{containerRect.y},{containerRect.width},{containerRect.height}</span>
-          </div>
-        );
-      }
-
-      return (
-        <div ref={ref}>
-          <span>no client rect</span>
-        </div>
-      );
-    };
   });
 
   afterAll(() => {
     global.ResizeObserver = originalResizeObserver;
     jest.useRealTimers();
+    jest.resetAllMocks();
   });
 
-  it('renders without crashing', () => {
-    expect(shallow.bind(shallow, <TestComponent />))
+  test('renders without crashing', () => {
+    const ref = mockRef();
+    const { result } = renderHook(() => useBoundingClientRect(ref));
+    expect(result.error)
       .not
-      .toThrow();
-  });
-
-  it('renders as expected', () => {
-    expect(shallow(<TestComponent />))
-      .toMatchSnapshot();
+      .toBeDefined();
   });
 
   describe('when the container is resized', () => {
-    let testComponent;
+    it('propagates the size change', () => {
+      const ref = mockRef();
+      const { result } = renderHook(() => useBoundingClientRect(ref));
 
-    beforeAll(() => {
-      testComponent = mount(<TestComponent />);
       act(() => {
-        const node = testComponent.getDOMNode();
-        node.getBoundingClientRect = jest.fn()
+        const node = ref.current.getDOMNode();
+        node.getBoundingClientRect
           .mockReturnValue({
             top: 0,
             right: 200,
@@ -93,25 +93,15 @@ describe('useBoundingClientRect', () => {
         node.dispatchEvent(new Event('resize'));
         currentResizeObserver.trigger();
         jest.runOnlyPendingTimers();
-        testComponent.update();
       });
-    });
 
-    afterAll(() => {
-      containerRect = undefined;
-    });
-
-    it('renders as expected', () => {
-      expect(testComponent).toMatchSnapshot();
-    });
-
-    it('propagates the size change', () => {
-      expect(containerRect).toEqual(
-        expect.objectContaining({
-          width: 200,
-          height: 200
-        })
-      );
+      expect(result.current)
+        .toEqual(
+          expect.objectContaining({
+            width: 200,
+            height: 200
+          })
+        );
     });
   });
 });

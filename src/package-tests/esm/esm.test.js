@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { render } from '@testing-library/react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useAnimationFrame, useBoundingClientRect, useDebounce, useIsScrolling, useOnScroll, useWindowScroll, useWindowSize } from '@haensl/react-hooks';
+import { useAnimationFrame, useBoundingClientRect, useDebounce, useIsMounted, useIsScrolling, useOnScroll, useWindowScroll, useWindowSize } from '@haensl/react-hooks';
 
 describe('esm module test', () => {
   describe('useDebounce', () => {
@@ -56,6 +56,26 @@ describe('esm module test', () => {
 
         return (
           <span>useOnScroll test</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
+  describe('useIsMounted', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const isMounted = useIsMounted();
+
+        return (
+          <span>useIsMounted test. { isMounted }</span>
         );
       };
     });

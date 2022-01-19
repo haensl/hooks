@@ -48,6 +48,7 @@ const DebouncedButton = () => {
 * [`useAnimationFrame`](#useAnimationFrame): animate a function.
 * [`useBoundingClientRect`](#useBoundingClientRect): keep track of a container's [DOM rectangle](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect).
 * [`useDebounce`](#useDeboune): debounce a function.
+* [`useIsMounted`](#useIsMounted): keep track of whether or not a component is mounted.
 * [`useIsScrolling`](#useIsScrolling): keep track of whether or not the user is scrolling.
 * [`useOnScroll`](#useOnScroll): subscribe to scroll events.
 * [`useWindowScroll`](#useWindowScroll): keep track of the `window`'s scroll position.
@@ -144,11 +145,36 @@ const DebouncedButton = () => {
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/eYJBKEZ)
 
+### useIsMounted()<a name="useIsMounted"></a>
+
+Returns a `function` to check whether or not the component invoking the hook is mounted.
+
+##### Example<a name="useIsMountedExample"></a>
+
+```javascript
+import React, { useEffect } from 'react';
+import { useIsMounted } from '@haensl/react-hooks';
+import api from 'somewhere';
+
+const MyComponent = () => {
+  const isMounted = useIsMounted();
+  // load some data from the backend
+  useEffect(() => {
+    api.fetchData()
+      .then((data) => {
+        if (isMounted()) {
+          // use data only if component is still mounted
+        }
+      });
+  }, []);
+}
+```
+
 ### useIsScrolling([el = window, scrollEndMs = 100])<a name="useIsScrolling"></a>
 
 Returns a `boolean` indicating whether or not the user is scrolling. You can subscribe to a specific element via the first argument, `el` _(default: `window`)_. End of scrolling is determined by no incoming scroll events for `scrollEndMs` milliseconds _(default: `100`)_. Please check the [example blow](#useIsScrollingExample) as well as the [Codepen example](https://codepen.io/haensl/pen/qBbqeWz)
 
-##### Example<a name=useIsScrollingExample>
+##### Example<a name=useIsScrollingExample></a>
 
 ```javascript
 import React from 'react';
