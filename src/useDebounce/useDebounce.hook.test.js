@@ -1,143 +1,97 @@
-import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { act, renderHook } from '@testing-library/react-hooks';
+import '@testing-library/jest-dom';
 import useDebounce from './';
 
 describe('useDebounce', () => {
-  let TestComponent;
-
   beforeAll(() => {
     jest.useFakeTimers();
-    TestComponent = ({
-      onClick = jest.fn(),
-      debounceMs = 10
-    }) => {
-      const _onClick = useDebounce(onClick, debounceMs);
-
-      return (
-        <button onClick={_onClick}>click me</button>
-      );
-    };
   });
 
   afterAll(() => {
     jest.useRealTimers();
   });
 
-  it('renders without crashing', () => {
-    expect(shallow.bind(shallow, <TestComponent />))
+  test('renders without crashing', () => {
+    const { result } = renderHook(() => useDebounce(jest.fn(), 200));
+    expect(result.error)
       .not
-      .toThrow();
+      .toBeDefined();
   });
 
-  it('renders a expected', () => {
-    expect(shallow(<TestComponent />))
-      .toMatchSnapshot();
-  });
-
-  describe('fn', () => {
-    describe('given non-function', () => {
-      it('throws a TypeError', () => {
-        expect(
-          shallow.bind(
-            shallow,
-            <TestComponent
-              onClick={ 1 }
-            />
-          )
-        ).toThrow(TypeError);
-      });
-    });
-
-    describe('function', () => {
-      it('does not throw', () => {
-        expect(
-          shallow.bind(
-            shallow,
-            <TestComponent
-              onClick={ jest.fn() }
-            />
-          )
-        ).not
-        .toThrow();
-      });
+  describe('given non-function for first parameter', () => {
+    it('throws a TypeError', () => {
+      const { result } = renderHook(() => useDebounce('foo', 200));
+      expect(result.error)
+        .toBeInstanceOf(TypeError);
     });
   });
 
-  describe('debounceMs', () => {
-    describe('given non-number', () => {
-      it('throws a TypeError', () => {
-        expect(
-          shallow.bind(
-            shallow,
-            <TestComponent
-              debounceMs={ 'foo' }
-            />
-          )
-        ).toThrow(TypeError);
-      });
-    });
-
-    describe('number', () => {
-      it('does not throw', () => {
-        expect(
-          shallow.bind(
-            shallow,
-            <TestComponent
-              debounceMs={ 50.3 }
-            />
-          )
-        ).not
-        .toThrow();
-      });
+  describe('given non-number for second parameter', () => {
+    it('throws a TypeError', () => {
+      const { result } = renderHook(() => useDebounce(jest.fn(), {}));
+      expect(result.error)
+        .toBeInstanceOf(TypeError);
     });
   });
 
-  describe('when used as a hook', () => {
-    let testComponent;
-    let onClick;
+  describe('when a handler is debounced', () => {
+    it('does is not called immediately', () => {
+      const handler = jest.fn();
+      let eventHandler;
+      renderHook(() => {
+        eventHandler = useDebounce(handler, 100);
+      });
 
-    beforeAll(() => {
-      onClick = jest.fn();
-      testComponent = mount(
-        <TestComponent
-          onClick={ onClick }
-        />
-      );
-      testComponent.find('button')
-        .first()
-        .simulate('click');
-    });
+      act(() => {
+        eventHandler();
+      });
 
-    it('does not call the callback immediately', () => {
-      expect(onClick)
+      expect(handler)
         .not
         .toHaveBeenCalled();
     });
+  });
 
-    describe('when another call happens within debounceMs', () => {
-      beforeAll(() => {
-        jest.advanceTimersByTime(5);
-        testComponent.find('button')
-          .first()
-          .simulate('click');
+  describe('when two calls happen within debounceMs', () => {
+    it('does not call the handler', () => {
+      const handler = jest.fn();
+      let eventHandler;
+      renderHook(() => {
+        eventHandler = useDebounce(handler, 100);
       });
 
-      it('buffers that call', () => {
-        expect(onClick)
-          .not
-          .toHaveBeenCalled();
+      act(() => {
+        eventHandler();
+
+        jest.advanceTimersByTime(50);
+
+        eventHandler();
+
+        jest.advanceTimersByTime(50);
       });
 
-      describe('when debounceMs have passed without another call', () => {
-        beforeAll(() => {
-          jest.advanceTimersByTime(10);
-        });
+      expect(handler)
+        .not
+        .toHaveBeenCalled();
+    });
+  });
 
-        it('calls the callback', () => {
-          expect(onClick)
-            .toHaveBeenCalled();
-        });
+  describe('when debounceMs have passed without another call', () => {
+    it('calls the handler', () => {
+      const handler = jest.fn();
+      let eventHandler;
+      renderHook(() => {
+        eventHandler = useDebounce(handler, 100);
       });
+
+      act(() => {
+        eventHandler();
+
+        jest.advanceTimersByTime(100);
+      });
+
+      expect(handler)
+        .toHaveBeenCalled();
     });
   });
 });

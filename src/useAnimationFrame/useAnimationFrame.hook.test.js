@@ -1,33 +1,24 @@
-import React from 'react';
-import { act } from 'react-dom/test-utils';
-import { shallow, mount } from 'enzyme';
+import { act, renderHook } from '@testing-library/react-hooks';
+import '@testing-library/jest-dom';
+
 import useAnimationFrame from './';
 
 describe('useAnimationFrame', () => {
-  let TestComponent;
-  let testComponent;
   let hasAnimated;
   let requestAnimationFrameSpy;
 
   beforeAll(() => {
     jest.useFakeTimers();
-    hasAnimated = 0;
+    hasAnimated = false;
     requestAnimationFrameSpy = jest.spyOn(
       window,
       'requestAnimationFrame'
     ).mockImplementation((callback) => {
-      if (hasAnimated < 2) {
-        setTimeout(() => {
-          callback(Date.now() + 10);
-          hasAnimated++;
-        }, 0);
+      if (!hasAnimated) {
+        setTimeout(callback(Date.now() + 10));
+        hasAnimated = true;
       }
     });
-    TestComponent = ({ handler = jest.fn() }) => {
-      useAnimationFrame(handler);
-
-      return (<span>useAnimationFrame test</span>);
-    };
   });
 
   afterAll(() => {
@@ -36,42 +27,18 @@ describe('useAnimationFrame', () => {
   });
 
   beforeEach(() => {
-    hasAnimated = 0;
-  });
-
-  it('renders without crashing', () => {
-    expect(shallow.bind(shallow, <TestComponent />))
-      .not.toThrow();
-  });
-
-  it('renders as expected', () => {
-    expect(shallow(<TestComponent />))
-      .toMatchSnapshot();
+    hasAnimated = false;
   });
 
   describe('when animating', () => {
-    let handler;
-
-    beforeAll(() => {
-      handler = jest.fn();
-      testComponent = mount(
-        <TestComponent
-          handler={ handler }
-        />
-      );
-    });
-
-    beforeEach((done) => {
-      act(() => {
-        while(hasAnimated < 2) {
-          jest.runOnlyPendingTimers();
-        }
-        testComponent.update();
-        done();
-      });
-    });
-
     it('applies the animation', () => {
+      const handler = jest.fn();
+      renderHook(() => useAnimationFrame(handler));
+
+      act(() => {
+        jest.runOnlyPendingTimers();
+      });
+
       expect(handler).toHaveBeenCalled();
     });
   });

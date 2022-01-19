@@ -1,6 +1,6 @@
 {
   "name": "@haensl/react-hooks",
-  "version": "1.7.6",
+  "version": "1.8.0",
   "description": "Assorted React hooks.",
   "main": "dist/hooks.cjs.js",
   "module": "dist/hooks.esm.js",
@@ -81,9 +81,6 @@
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$"
     ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
     "modulePaths": []
   },
   "jest-junit": {
@@ -105,11 +102,6 @@
   "peerDependencies": {
     "react": ">=16"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "CI=true npm run lint && npm run test:ci"
-    }
-  },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/plugin-transform-runtime": "^7.12.10",
@@ -120,12 +112,12 @@
     "@rollup/plugin-babel": "^5.2.3",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.0",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^7.0.2",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.0.1",
     "babel-preset-react-app": "^10.0.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6",
-    "enzyme-to-json": "^3.6.1",
     "eslint": "^8.5.0",
     "eslint-config-react-app": "^7.0.0",
     "eslint-plugin-flowtype": "^8.0.3",
@@ -136,9 +128,9 @@
     "husky": "^7.0.4",
     "jest": "^27.0.1",
     "jest-junit": "^13.0.0",
-    "react": "^16.14.0",
-    "react-app-polyfill": "^2.0.0",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.2",
+    "react-app-polyfill": "^3.0.0",
+    "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.38.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",

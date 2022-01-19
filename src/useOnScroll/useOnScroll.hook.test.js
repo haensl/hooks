@@ -1,73 +1,40 @@
-import React from 'react';
-import { act } from 'react-dom/test-utils';
-import { shallow, mount } from 'enzyme';
+import { act, renderHook } from '@testing-library/react-hooks';
 import useOnScroll from './';
 
 describe('useOnScroll', () => {
-  let TestComponent;
-
-  beforeAll(() => {
-    TestComponent = ({ handler = jest.fn() }) => {
-      useOnScroll(handler);
-      return (<span>test</span>);
-    };
+  test('renders without crashing', () => {
+    const { result } = renderHook(() => useOnScroll());
+    expect(result.error)
+      .not
+      .toBeDefined();
   });
 
-  it('renders without crashing', () => {
-    expect(shallow.bind(shallow, <TestComponent />))
-      .not.toThrow();
-  });
+  describe('when the element is scrolled', () => {
+    test('it calls the handler', () => {
+      const handler = jest.fn();
+      renderHook(() => useOnScroll(handler));
 
-  describe('default element', () => {
-    describe('when the element is scrolled', () => {
-      let handler;
-
-      beforeAll(() => {
-        handler = jest.fn();
-        mount(<TestComponent handler={ handler } />);
+      act(() => {
+        window.dispatchEvent(new Event('scroll'));
       });
 
-      beforeEach(() => {
-        act(() => {
-          window.dispatchEvent(new Event('scroll'));
-        });
-      });
-
-      it('calls the handler', () => {
-        expect(handler).toHaveBeenCalled();
-      });
+      expect(handler)
+        .toHaveBeenCalled();
     });
   });
 
-  describe('custom element', () => {
-    let container;
+  describe('when used with custom element', () => {
+    test('it calls the handler', () => {
+      const handler = jest.fn();
+      const container = document.createElement('div');
+      renderHook(() => useOnScroll(handler, container));
 
-    beforeAll(() => {
-      container = document.createElement('div');
-    });
-
-    describe('when the element is scrolled', () => {
-      let handler;
-
-      beforeAll(() => {
-        handler = jest.fn();
-        const OnContainerScrollComponent = () => {
-          useOnScroll(handler, container);
-          return (<span>test</span>);
-        };
-        mount(<OnContainerScrollComponent />);
+      act(() => {
+        container.dispatchEvent(new Event('scroll'));
       });
 
-      beforeEach(() => {
-        act(() => {
-          container.dispatchEvent(new Event('scroll'));
-        });
-      });
-
-      it('calls the handler', () => {
-        expect(handler)
-          .toHaveBeenCalled();
-      });
+      expect(handler)
+        .toHaveBeenCalled();
     });
   });
 });

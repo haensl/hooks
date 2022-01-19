@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`useAnimationFrame renders as expected 1`] = `
-<span>
-  useAnimationFrame test
-</span>
-`;
