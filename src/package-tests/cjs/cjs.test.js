@@ -1,7 +1,19 @@
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useDebounce, useBoundingClientRect, useAnimationFrame, useIsMounted, useIsScrolling, useOnScroll, useWindowScroll, useWindowSize } from '@haensl/react-hooks';
+/* eslint-disable object-curly-newline */
+import {
+  useDebounce,
+  useBoundingClientRect,
+  useAnimationFrame,
+  useIsMounted,
+  useIsScrolling,
+  useOnScroll,
+  usePrevious,
+  useWindowScroll,
+  useWindowSize
+} from '@haensl/react-hooks';
+/* eslint-enable object-curly-newline */
 
 describe('cjs module test', () => {
   let container;
@@ -66,6 +78,28 @@ describe('cjs module test', () => {
 
         return (
           <span>useOnScroll test</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
+  });
+
+  describe('usePrevious', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const previous = usePrevious(5);
+
+        return (
+          <span>usePrevious test. { previous }</span>
         );
       };
     });

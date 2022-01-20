@@ -1,6 +1,6 @@
 {
   "name": "@haensl/react-hooks",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Assorted React hooks.",
   "main": "dist/hooks.cjs.js",
   "module": "dist/hooks.esm.js",

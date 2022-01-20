@@ -1,7 +1,19 @@
 import React, { useRef } from 'react';
 import { render } from '@testing-library/react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useAnimationFrame, useBoundingClientRect, useDebounce, useIsMounted, useIsScrolling, useOnScroll, useWindowScroll, useWindowSize } from '@haensl/react-hooks';
+/* eslint-disable object-curly-newline */
+import {
+  useAnimationFrame,
+  useBoundingClientRect,
+  useDebounce,
+  useIsMounted,
+  useIsScrolling,
+  useOnScroll,
+  usePrevious,
+  useWindowScroll,
+  useWindowSize
+} from '@haensl/react-hooks';
+/* eslint-enable object-curly-newline */
 
 describe('esm module test', () => {
   describe('useDebounce', () => {
@@ -56,6 +68,26 @@ describe('esm module test', () => {
 
         return (
           <span>useOnScroll test</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
+  describe('usePrevious', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const previous = usePrevious(5);
+
+        return (
+          <span>usePrevious test { previous }</span>
         );
       };
     });

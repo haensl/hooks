@@ -1,3 +1,7 @@
+## 1.9.0
+* [#62: Add `usePrevious` hook.](https://github.com/haensl/hooks/issues/62)
+* Update dependencies.
+
 ## 1.8.0
 * Add `useIsMounted` hook.
 * Migrate development to React 17.

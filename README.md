@@ -51,6 +51,7 @@ const DebouncedButton = () => {
 * [`useIsMounted`](#useIsMounted): keep track of whether or not a component is mounted.
 * [`useIsScrolling`](#useIsScrolling): keep track of whether or not the user is scrolling.
 * [`useOnScroll`](#useOnScroll): subscribe to scroll events.
+* [`usePrevious`](#usePrevious): keep track of a variable's previous value.
 * [`useWindowScroll`](#useWindowScroll): keep track of the `window`'s scroll position.
 * [`useWindowSize`](#useWindowSize): keep track of the `window`'s size.
 
@@ -218,6 +219,38 @@ const WindowScrollTracker = () => {
 ```
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/wvMoLJK)
+
+### usePrevious(value)<a name="usePrevious"></a>
+
+Keeps track of changes to a value, storing it's _previous_ state.
+
+##### Example
+
+```javascript
+import { useEffect, useState } from 'react';
+import { usePrevious, useWindowScroll } from '@haensl/react-hooks';
+
+const ScrollDirectionTracker = () => {
+  const scrollPosition = useWindowScroll();
+  const previousScrollPosition = usePrevious(scrollPosition);
+  const [scrollDirection, setScrollDirection] = useState('down');
+
+  useEffect(() => {
+    if (previousScrollPosition.y < scrollPosition.y) {
+      setScrollDirection('down');
+    } else if (previousScrollPosition.y > scrollPosition.y) {
+      setScrollDirection('up');
+    }
+  }, [scrollPosition, previousScrollPosition]);
+
+  return (
+    <div className="ScrollDirectionTracker">
+      <span>User is scrolling</span>
+      <span>{ scrollDirection }px</span>
+    </div>
+  );
+};
+```
 
 ### useWindowScroll([debounceMs = 25])<a name="useWindowScroll"></a>
 Returns an object _(`null` if there is no `window`)_ with properties `x` and `y` reflecting the the scroll position of the `window` or `document`. Scroll position updates are by default debounced by 25 milliseconds. This debounce interval can be customized via the optional `debounceMs` argument. Please check the [example below](#useWindowScrollExample) as well as the [Codepen example](https://codepen.io/haensl/pen/VweMJGm).
