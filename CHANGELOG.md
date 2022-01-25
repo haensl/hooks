@@ -1,3 +1,6 @@
+## 1.9.1
+* [#64: Update dependencies.](https://github.com/haensl/hooks/issues/64)
+
 ## 1.9.0
 * [#62: Add `usePrevious` hook.](https://github.com/haensl/hooks/issues/62)
 * Update dependencies.
