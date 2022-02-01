@@ -1,6 +1,6 @@
 {
   "name": "@haensl/react-hooks",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "Assorted React hooks.",
   "main": "dist/hooks.cjs.js",
   "module": "dist/hooks.esm.js",
@@ -11,10 +11,10 @@
     "coverage:ci": "CI=true npm test -- --ci --coverage",
     "lint": "NODE_ENV=production eslint --ext js,jsx src/",
     "lint:ci": "NODE_ENV=production eslint --format junit -o test-results/eslint/results.xml --ext js,jsx src/",
+    "prepare": "if [ ${NODE_ENV} != 'production' ]; then husky install; fi",
     "tdd": "jest --runInBand --watch",
     "test": "jest --runInBand",
-    "test:ci": "jest --runInBand --no-cache --ci --reporters='default' --reporters='jest-junit'",
-    "prepare": "if [ ${NODE_ENV} != 'production' ]; then husky install; fi"
+    "test:ci": "jest --runInBand --no-cache --ci --reporters='default' --reporters='jest-junit'"
   },
   "repository": {
     "type": "git",

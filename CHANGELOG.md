@@ -1,3 +1,6 @@
+## 1.9.2
+* [#66: Update dependencies.](https://github.com/haensl/hooks/issues/66)
+
 ## 1.9.1
 * [#64: Update dependencies.](https://github.com/haensl/hooks/issues/64)
 
