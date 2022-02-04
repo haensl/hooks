@@ -1,5 +1,5 @@
-import { useState, useCallback, useLayoutEffect } from 'react';
-import { useDebounce, useWindowSize } from '../';
+import { useState, useCallback } from 'react';
+import { useDebounce, useIsomorphicLayoutEffect, useWindowSize } from '../';
 
 const useBoundingClientRect = (ref, debounceMs = 25) => {
   const [boundingClientRect, setBoundingClientRect] = useState(null);
@@ -16,7 +16,7 @@ const useBoundingClientRect = (ref, debounceMs = 25) => {
 
   const onResizeDebounced = useDebounce(onResize, debounceMs);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const current = ref.current;
 
     if (!current) {
@@ -31,7 +31,7 @@ const useBoundingClientRect = (ref, debounceMs = 25) => {
     };
   }, [ ref, onResize, onResizeDebounced]);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const current = ref && ref.current;
     if (!current || typeof onResize !== 'function') {
       return;

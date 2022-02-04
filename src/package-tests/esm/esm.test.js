@@ -7,6 +7,7 @@ import {
   useBoundingClientRect,
   useDebounce,
   useIsMounted,
+  useIsomorphicLayoutEffect,
   useIsScrolling,
   useOnScroll,
   usePrevious,
@@ -108,6 +109,28 @@ describe('esm module test', () => {
 
         return (
           <span>useIsMounted test. { isMounted }</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
+  describe('useIsomorphicLayoutEffect', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        useIsomorphicLayoutEffect(() => {
+          // do nothing
+        }, []);
+
+        return (
+          <span>useIsomorphicLayoutEffect test.</span>
         );
       };
     });

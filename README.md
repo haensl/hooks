@@ -49,6 +49,7 @@ const DebouncedButton = () => {
 * [`useBoundingClientRect`](#useBoundingClientRect): keep track of a container's [DOM rectangle](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect).
 * [`useDebounce`](#useDeboune): debounce a function.
 * [`useIsMounted`](#useIsMounted): keep track of whether or not a component is mounted.
+* [`useIsomorphicLayoutEffect`](#useIsomorphicLayoutEffect): use this instead of [`useLayoutEffect`](https://reactjs.org/docs/hooks-reference.html#uselayouteffect) if your app uses serverside rendering (SSR).
 * [`useIsScrolling`](#useIsScrolling): keep track of whether or not the user is scrolling.
 * [`useOnScroll`](#useOnScroll): subscribe to scroll events.
 * [`usePrevious`](#usePrevious): keep track of a variable's previous value.
@@ -168,6 +169,38 @@ const MyComponent = () => {
         }
       });
   }, []);
+}
+```
+
+### useIsomorphicLayoutEffect(fn, deps)<a name="useIsomorphicLayoutEffect"></a>
+
+This hooks resolves the common React warning when using `useLayoutEffect` in a serverside environment:
+
+*Warning: useLayoutEffect does nothing on the server, because its effect cannot be encoded into the server renderer’s output format. This will lead to a mismatch between the initial, non-hydrated UI and the intended UI. To avoid this, useLayoutEffect should only be used in components that render exclusively on the client. See https://fb.me/react-uselayouteffect-ssr for common fixes.*
+
+`useIsomorphicLayoutEffect` resolves to [`useLayoutEffect`](https://reactjs.org/docs/hooks-reference.html#uselayouteffect) on the client and [`useEffect`](https://reactjs.org/docs/hooks-reference.html#useeffect) on the server. Use this hook instead of `useLayoutEffect` if your app uses serverside rendering (SSR).
+
+##### Example<a name="useIsomorphicLayoutEffectExample"></a>
+
+```javascript
+import React, { useRef } from 'react';
+import { useIsomorphicLayoutEffect } from '@haensl/react-hooks';
+
+const MyComponent = () => {
+  const ref = useRef();
+
+  // prevents serverside rendering warning
+  useIsomorphicLayoutEffect(() => {
+    if (ref.current) {
+      // do stuff with ref
+    }
+  }, [ref]);
+
+  return (
+    <div ref={ ref }>
+      // ...
+    </div>
+  )
 }
 ```
 
