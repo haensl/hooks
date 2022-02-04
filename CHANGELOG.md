@@ -1,5 +1,6 @@
 ## 1.10.0
 * [#69: Add `useIsomorphicLayoutEffect` hook.](https://github.com/haensl/hooks/issues/69)
+* Update dependencies.
 
 ## 1.9.2
 * [#66: Update dependencies.](https://github.com/haensl/hooks/issues/66)
