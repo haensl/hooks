@@ -7,6 +7,7 @@ import {
   useBoundingClientRect,
   useAnimationFrame,
   useIsMounted,
+  useIsomorphicLayoutEffect,
   useIsScrolling,
   useOnScroll,
   usePrevious,
@@ -122,6 +123,30 @@ describe('cjs module test', () => {
 
         return (
           <span>useIsMounted test. { isMounted }</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
+  });
+
+  describe('useIsomorphicLayoutEffect', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        useIsomorphicLayoutEffect(() => {
+          // do nothing
+        }, []);
+
+        return (
+          <span>useIsomorphicLayoutEffect test.</span>
         );
       };
     });
