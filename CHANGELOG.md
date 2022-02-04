@@ -1,3 +1,6 @@
+## 1.10.1
+* [#71: Fix package badges.](https://github.com/haensl/hooks/issues/71)
+
 ## 1.10.0
 * [#69: Add `useIsomorphicLayoutEffect` hook.](https://github.com/haensl/hooks/issues/69)
 * Update dependencies.

@@ -2,9 +2,9 @@
 
 Assorted React hooks.
 
-[![NPM](https://nodei.co/npm/@haensl%2Fhooks.png?downloads=true)](https://nodei.co/npm/@haensl%2Freact-hooks/)
+[![NPM](https://nodei.co/npm/@haensl%2Freact-hooks.png?downloads=true)](https://nodei.co/npm/@haensl%2Freact-hooks/)
 
-[![npm version](https://badge.fury.io/js/@haensl%2Fhooks.svg)](http://badge.fury.io/js/@haensl%2Freact-hooks)
+[![npm version](https://badge.fury.io/js/@haensl%2Freact-hooks.svg)](http://badge.fury.io/js/@haensl%2Freact-hooks)
 [![CircleCI](https://circleci.com/gh/haensl/hooks.svg?style=svg)](https://circleci.com/gh/haensl/hooks)
 
 ## Installation<a name="installation"></a>
