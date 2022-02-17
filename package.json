@@ -1,6 +1,6 @@
 {
   "name": "@haensl/react-hooks",
-  "version": "1.10.2",
+  "version": "1.10.3",
   "description": "Assorted React hooks.",
   "main": "dist/hooks.cjs.js",
   "module": "dist/hooks.esm.js",
@@ -23,13 +23,33 @@
   "keywords": [
     "react",
     "hooks",
+    "react hooks",
+    "useBoundingClientRect",
+    "boundingClientRect",
     "useDebounce",
     "debounce",
-    "react hooks",
     "useAnimationFrame",
     "requestAnimationFrame",
     "animationFrame",
-    "animation"
+    "animation",
+    "useIsMounted",
+    "isMounted",
+    "useIsomorphicLayoutEffect",
+    "isomorphicLayoutEffect",
+    "isomorphic",
+    "layoutEffect",
+    "useIsScrolling",
+    "isScrolling",
+    "useOnScroll",
+    "onScroll",
+    "window",
+    "scroll",
+    "usePrevious",
+    "previous",
+    "value",
+    "useWindowSize",
+    "windowSize",
+    "size"
   ],
   "author": {
     "name": "HP Dietz",
@@ -37,6 +57,7 @@
     "twitter": "@h_p_d",
     "email": "h.p.dietz@gmail.com"
   },
+  "funding": "https://github.com/sponsors/haensl",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/haensl/hooks/issues"

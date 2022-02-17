@@ -1,5 +1,8 @@
+## 1.10.3
+* [#75: Add funding information.](https://github.com/haensl/hooks/issues/75)
+
 ## 1.10.2
-* [#73: Update dependencies..](https://github.com/haensl/hooks/issues/73)
+* [#73: Update dependencies.](https://github.com/haensl/hooks/issues/73)
 
 ## 1.10.1
 * [#71: Fix package badges.](https://github.com/haensl/hooks/issues/71)
