@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import ResizeObserver from 'resize-observer-polyfill';
 /* eslint-disable object-curly-newline */
 import {
-  useDebounce,
-  useBoundingClientRect,
   useAnimationFrame,
+  useBoundingClientRect,
+  useClassNames,
+  useDebounce,
   useIsMounted,
   useIsomorphicLayoutEffect,
   useIsScrolling,
@@ -57,6 +58,28 @@ describe('cjs module test', () => {
 
         return (
           <span>useAnimationFrame test</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
+  });
+
+  describe('useClassNames', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const className = useClassNames({ test: true });
+
+        return (
+          <span className={ className }>useClassNames test</span>
         );
       };
     });

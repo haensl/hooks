@@ -1,5 +1,6 @@
 import _useAnimationFrame from './useAnimationFrame';
 import _useBoundingClientRect from './useBoundingClientRect';
+import _useClassNames from './useClassNames';
 import _useDebounce from './useDebounce';
 import _useIsMounted from './useIsMounted';
 import _useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
@@ -11,6 +12,7 @@ import _useWindowSize from './useWindowSize';
 
 export const useAnimationFrame = _useAnimationFrame;
 export const useBoundingClientRect = _useBoundingClientRect;
+export const useClassNames = _useClassNames;
 export const useDebounce = _useDebounce;
 export const useIsMounted = _useIsMounted;
 export const useIsomorphicLayoutEffect = _useIsomorphicLayoutEffect;
@@ -23,6 +25,7 @@ export const useWindowSize = _useWindowSize;
 const exports = {
   useAnimationFrame,
   useBoundingClientRect,
+  useClassNames,
   useDebounce,
   useIsMounted,
   useIsomorphicLayoutEffect,

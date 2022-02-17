@@ -1,3 +1,6 @@
+## 1.11.0
+* [#77: Add `useClassNames` hook.](https://github.com/haensl/hooks/issues/77)
+
 ## 1.10.3
 * [#75: Add funding information.](https://github.com/haensl/hooks/issues/75)
 

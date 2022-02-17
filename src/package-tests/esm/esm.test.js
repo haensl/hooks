@@ -5,6 +5,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 import {
   useAnimationFrame,
   useBoundingClientRect,
+  useClassNames,
   useDebounce,
   useIsMounted,
   useIsomorphicLayoutEffect,
@@ -49,6 +50,26 @@ describe('esm module test', () => {
 
         return (
           <span>useAnimationFrame test</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
+  describe('useClassNames', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const className = useClassNames({ test: true });
+
+        return (
+          <span className={ className }>useClassNames test</span>
         );
       };
     });

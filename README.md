@@ -47,6 +47,7 @@ const DebouncedButton = () => {
 
 * [`useAnimationFrame`](#useAnimationFrame): animate a function.
 * [`useBoundingClientRect`](#useBoundingClientRect): keep track of a container's [DOM rectangle](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect).
+* [`useClassNames`](#useClassNames): compile CSS class names from state.
 * [`useDebounce`](#useDeboune): debounce a function.
 * [`useIsMounted`](#useIsMounted): keep track of whether or not a component is mounted.
 * [`useIsomorphicLayoutEffect`](#useIsomorphicLayoutEffect): use this instead of [`useLayoutEffect`](https://reactjs.org/docs/hooks-reference.html#uselayouteffect) if your app uses serverside rendering (SSR).
@@ -120,6 +121,32 @@ const RectTracker = () => {
 ```
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/YzwxqOq)
+
+### useClassNames(states, [separator = ' '])<a name="useClassNames"></a>
+
+Compiles a `states` object into a CSS class name string. By default all keys in `states` are joined by a space (' ') but you can supply a custom `separator`. Please check the [example below](#useClassNamesExample).
+
+#### Example
+```javascript
+import React, { useState } from 'react';
+import { useClassNames } from '@haensl/react-hooks';
+
+const MyComponent = () => {
+  const [stateA, setStateA] = useState(false);
+  const className = useClassNames({
+    MyComponent: true, // always have .MyComponent in class name
+    MyComponent--stateA: stateA // add .MyComponent--stateA when stateA is true
+  });
+
+  return (
+    <div className={ className }>
+      {
+        // render content
+      }
+    </div>
+  );
+};
+```
 
 
 ### useDebounce(fn, debounceMs)<a name="useDebounce"></a>
