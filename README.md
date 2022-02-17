@@ -124,9 +124,10 @@ const RectTracker = () => {
 
 ### useClassNames(states, [separator = ' '])<a name="useClassNames"></a>
 
-Compiles a `states` object into a CSS class name string. By default all keys in `states` are joined by a space (' ') but you can supply a custom `separator`. Please check the [example below](#useClassNamesExample).
+Compiles a `states` object into a CSS class name string. By default all keys in `states` are joined by a space (`' '`) but you can supply a custom `separator` to cater to the needs of your CSS module naming methodology of choice. Please check the [examples below](#useClassNamesExample).
 
-#### Example
+#### Example<a name="useClassNamesExample"></a>
+
 ```javascript
 import React, { useState } from 'react';
 import { useClassNames } from '@haensl/react-hooks';
@@ -134,9 +135,11 @@ import { useClassNames } from '@haensl/react-hooks';
 const MyComponent = () => {
   const [stateA, setStateA] = useState(false);
   const className = useClassNames({
-    MyComponent: true, // always have .MyComponent in class name
-    MyComponent--stateA: stateA // add .MyComponent--stateA when stateA is true
+    MyComponent: true, // always have MyComponent in class name
+    MyComponent--stateA: stateA // add MyComponent--stateA when stateA is true
   });
+
+  // className will be 'MyComponent' or 'MyComponent MyComponent--stateA'
 
   return (
     <div className={ className }>
@@ -148,6 +151,33 @@ const MyComponent = () => {
 };
 ```
 
+#### Example: custom separator<a name="useClassNamesExampleSeparator"></a>
+
+```javascript
+import React, { useState } from 'react';
+import { useClassNames } from '@haensl/react-hooks';
+
+const MyComponent = () => {
+  const [stateA, setStateA] = useState(false);
+  const className = useClassNames(
+    {
+      MyComponent: true, // always have MyComponent in class name
+      stateA // add --stateA when stateA is true
+    },
+    '--'
+  );
+
+  // className will either be 'MyComponent' or 'MyComponent--stateA'
+
+  return (
+    <div className={ className }>
+      {
+        // render content
+      }
+    </div>
+  );
+};
+```
 
 ### useDebounce(fn, debounceMs)<a name="useDebounce"></a>
 
