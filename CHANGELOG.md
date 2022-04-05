@@ -1,3 +1,6 @@
+## 1.11.1
+* [#81: Update dependencies.](https://github.com/haensl/hooks/issues/81)
+
 ## 1.11.0
 * [#77: Add `useClassNames` hook.](https://github.com/haensl/hooks/issues/77)
 
