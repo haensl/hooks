@@ -49,6 +49,7 @@ const DebouncedButton = () => {
 * [`useBoundingClientRect`](#useBoundingClientRect): keep track of a container's [DOM rectangle](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect).
 * [`useClassNames`](#useClassNames): compile CSS class names from state.
 * [`useDebounce`](#useDeboune): debounce a function.
+* [`useInterval`](#useInterval): use an interval.
 * [`useIsMounted`](#useIsMounted): keep track of whether or not a component is mounted.
 * [`useIsomorphicLayoutEffect`](#useIsomorphicLayoutEffect): use this instead of [`useLayoutEffect`](https://reactjs.org/docs/hooks-reference.html#uselayouteffect) if your app uses serverside rendering (SSR).
 * [`useIsScrolling`](#useIsScrolling): keep track of whether or not the user is scrolling.
@@ -57,7 +58,7 @@ const DebouncedButton = () => {
 * [`useWindowScroll`](#useWindowScroll): keep track of the `window`'s scroll position.
 * [`useWindowSize`](#useWindowSize): keep track of the `window`'s size.
 
-### useAnimationFrame(fn)<a name="useAnimationFrame"></a>
+### `useAnimationFrame(fn)` <a name="useAnimationFrame"></a>
 
 Uses [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) to animate a function `fn`. The callback is passed one single argument, the time delta in milliseconds that has passed between this and the last call. Please check the [example](#useAnimationFrameExample) below as well as the [Codepen example](https://codepen.io/haensl/pen/GRoNGNB).
 
@@ -90,7 +91,7 @@ const AnimatedTimer = () => {
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/GRoNGNB)
 
-### useBoundingClientRect(ref, [debounceMs = 25])<a name="useBoundingClientRect"></a>
+### `useBoundingClientRect(ref, [debounceMs = 25])` <a name="useBoundingClientRect"></a>
 Returns the DOM rectangle _(initially `null`)_ as returned by [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for the given container `ref`. Changes are debounced by 25 milliseconds by default. Customize the debounce interval via the optional `debounceMs` argument. Please check out the [example below](#useBoundingClientRectExample) as well as the [Codepen example](https://codepen.io/haensl/pen/YzwxqOq).
 
 #### Example
@@ -122,7 +123,7 @@ const RectTracker = () => {
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/YzwxqOq)
 
-### useClassNames(states, [separator = ' '])<a name="useClassNames"></a>
+### `useClassNames(states, [separator = ' '])` <a name="useClassNames"></a>
 
 Compiles a `states` object into a CSS class name string. By default all keys in `states` are joined by a space (`' '`) but you can supply a custom `separator` to cater to the needs of your CSS module naming methodology of choice. Please check the [examples below](#useClassNamesExample).
 
@@ -179,7 +180,7 @@ const MyComponent = () => {
 };
 ```
 
-### useDebounce(fn, debounceMs)<a name="useDebounce"></a>
+### `useDebounce(fn, debounceMs)` <a name="useDebounce"></a>
 
 Uses [memoization](https://reactjs.org/docs/hooks-reference.html#usememo) to debounce `fn` by `debounceMs` milliseconds. Please check the [example below](#useDebounceExample) as well as the [Codepen example](https://codepen.io/haensl/pen/eYJBKEZ).
 
@@ -204,7 +205,34 @@ const DebouncedButton = () => {
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/eYJBKEZ)
 
-### useIsMounted()<a name="useIsMounted"></a>
+### `useInterval(fn, intervalMs)` <a name="useInterval"></a>
+
+Calls a `fn` repeatedly every `intervalMs` milliseconds.
+
+##### Example<a name="useDebounceExample"></a>
+
+```javascript
+import React, { useState, useCallback } from 'react';
+import { useInterval } from '@haensl/react-hooks';
+
+const DebouncedButton = () => {
+  const [frame, setFrame] = useState(0);
+
+  const handler = useCallback(() => {
+    setFrame((frame) => frame + 1);
+  }, [setFrame]);
+
+  // Update frame every 100 milliseconds
+  useInterval(handler, 100);
+
+  return (
+    <div>{ frame }</div>
+  );
+};
+```
+
+
+### `useIsMounted()` <a name="useIsMounted"></a>
 
 Returns a `function` to check whether or not the component invoking the hook is mounted.
 
@@ -229,7 +257,7 @@ const MyComponent = () => {
 }
 ```
 
-### useIsomorphicLayoutEffect(fn, deps)<a name="useIsomorphicLayoutEffect"></a>
+### `useIsomorphicLayoutEffect(fn, deps)` <a name="useIsomorphicLayoutEffect"></a>
 
 This hooks resolves the common React warning when using `useLayoutEffect` in a serverside environment:
 
@@ -261,7 +289,7 @@ const MyComponent = () => {
 }
 ```
 
-### useIsScrolling([el = window, scrollEndMs = 100])<a name="useIsScrolling"></a>
+### `useIsScrolling([el = window, scrollEndMs = 100])` <a name="useIsScrolling"></a>
 
 Returns a `boolean` indicating whether or not the user is scrolling. You can subscribe to a specific element via the first argument, `el` _(default: `window`)_. End of scrolling is determined by no incoming scroll events for `scrollEndMs` milliseconds _(default: `100`)_. Please check the [example blow](#useIsScrollingExample) as well as the [Codepen example](https://codepen.io/haensl/pen/qBbqeWz)
 
@@ -282,7 +310,7 @@ const UserScrollTracker = () => {
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/qBbqeWz)
 
-### useOnScroll(fn, [el = window])<a name="useOnScroll"></a>
+### `useOnScroll(fn, [el = window])` <a name="useOnScroll"></a>
 
 Subscribes to [`scroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event) events on the given element `el` _(default: `window`)_. The callback function `fn` is passed the [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event). Please check the [example below](#useOnScrollExample) as well as the [Codepen example](https://codepen.io/haensl/pen/wvMoLJK).
 
@@ -310,7 +338,7 @@ const WindowScrollTracker = () => {
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/wvMoLJK)
 
-### usePrevious(value)<a name="usePrevious"></a>
+### `usePrevious(value)` <a name="usePrevious"></a>
 
 Keeps track of changes to a value, storing it's _previous_ state.
 
@@ -342,7 +370,7 @@ const ScrollDirectionTracker = () => {
 };
 ```
 
-### useWindowScroll([debounceMs = 25])<a name="useWindowScroll"></a>
+### `useWindowScroll([debounceMs = 25])` <a name="useWindowScroll"></a>
 Returns an object _(`null` if there is no `window`)_ with properties `x` and `y` reflecting the the scroll position of the `window` or `document`. Scroll position updates are by default debounced by 25 milliseconds. This debounce interval can be customized via the optional `debounceMs` argument. Please check the [example below](#useWindowScrollExample) as well as the [Codepen example](https://codepen.io/haensl/pen/VweMJGm).
 
 #### Example<a name="useWindowScrollExample"></a>
@@ -373,7 +401,7 @@ const windowScrollTracker = () => {
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/VweMJGm)
 
-### useWindowSize([debounceMs = 25])<a name="useWindowSize"></a>
+### `useWindowSize([debounceMs = 25])` <a name="useWindowSize"></a>
 Returns an object _(initially `null`)_ with properties `width` and `height` reflecting the `innerWidth` and `innerHeight` of the `window` object. Size updates are by default debounced by 25 milliseconds. This debounce interval can be customized via the optional `debounceMs` argument. Please check the [example below](#useWindowSizeExample) as well as the [Codepen example](https://codepen.io/haensl/pen/mdVMVxY).
 
 #### Example<a name="useWindowSizeExample"></a>

@@ -1,3 +1,6 @@
+## 1.12.0
+* [#87: Add `useInterval` hook.](https://github.com/haensl/hooks/issues/87)
+
 ## 1.11.2
 * [#85: Update dependencies.](https://github.com/haensl/hooks/issues/85)
 * [#83: Migrate to React@18.](https://github.com/haensl/hooks/issues/83)
