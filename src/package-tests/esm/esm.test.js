@@ -7,6 +7,7 @@ import {
   useBoundingClientRect,
   useClassNames,
   useDebounce,
+  useInterval,
   useIsMounted,
   useIsomorphicLayoutEffect,
   useIsScrolling,
@@ -110,6 +111,28 @@ describe('esm module test', () => {
 
         return (
           <span>usePrevious test { previous }</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
+  describe('useInterval', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        useInterval(() => {
+          // do nothing
+        }, 100);
+
+        return (
+          <span>useInterval test.</span>
         );
       };
     });

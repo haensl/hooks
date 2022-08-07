@@ -2,6 +2,7 @@ import _useAnimationFrame from './useAnimationFrame';
 import _useBoundingClientRect from './useBoundingClientRect';
 import _useClassNames from './useClassNames';
 import _useDebounce from './useDebounce';
+import _useInterval from './useInterval';
 import _useIsMounted from './useIsMounted';
 import _useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
 import _useIsScrolling from './useIsScrolling';
@@ -14,6 +15,7 @@ export const useAnimationFrame = _useAnimationFrame;
 export const useBoundingClientRect = _useBoundingClientRect;
 export const useClassNames = _useClassNames;
 export const useDebounce = _useDebounce;
+export const useInterval = _useInterval;
 export const useIsMounted = _useIsMounted;
 export const useIsomorphicLayoutEffect = _useIsomorphicLayoutEffect;
 export const useIsScrolling = _useIsScrolling;
@@ -27,6 +29,7 @@ const exports = {
   useBoundingClientRect,
   useClassNames,
   useDebounce,
+  useInterval,
   useIsMounted,
   useIsomorphicLayoutEffect,
   useIsScrolling,

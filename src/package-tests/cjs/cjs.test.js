@@ -7,6 +7,7 @@ import {
   useBoundingClientRect,
   useClassNames,
   useDebounce,
+  useInterval,
   useIsMounted,
   useIsomorphicLayoutEffect,
   useIsScrolling,
@@ -277,6 +278,30 @@ describe('cjs module test', () => {
               </div>
             )}
           </div>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
+  });
+
+  describe('useInterval', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        useInterval(() => {
+          // do nothing
+        }, 100);
+
+        return (
+          <span>useInterval test.</span>
         );
       };
     });
