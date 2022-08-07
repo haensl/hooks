@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import useDebounce from './';
 
@@ -19,17 +19,54 @@ describe('useDebounce', () => {
   });
 
   describe('given non-function for first parameter', () => {
+    let consoleMock;
+
+    beforeEach(() => {
+      consoleMock = jest.spyOn(console, 'error').mockImplementation(() => {
+        // ignore
+      });
+    });
+
+    afterEach(() => {
+      consoleMock.mockRestore();
+    });
+
     it('throws a TypeError', () => {
-      const { result } = renderHook(() => useDebounce('foo', 200));
-      expect(result.error)
+      let error;
+      try {
+        renderHook(() => useDebounce('foo', 200));
+      } catch (err) {
+        error = err;
+      }
+      expect(error)
         .toBeInstanceOf(TypeError);
+
+      consoleMock.mockRestore();
     });
   });
 
   describe('given non-number for second parameter', () => {
+    let consoleMock;
+
+    beforeEach(() => {
+      consoleMock = jest.spyOn(console, 'error').mockImplementation(() => {
+        // ignore
+      });
+    });
+
+    afterEach(() => {
+      consoleMock.mockRestore();
+    });
+
     it('throws a TypeError', () => {
-      const { result } = renderHook(() => useDebounce(jest.fn(), {}));
-      expect(result.error)
+      let error;
+      try {
+        renderHook(() => useDebounce(jest.fn(), {}));
+      } catch (err) {
+        error = err;
+      }
+
+      expect(error)
         .toBeInstanceOf(TypeError);
     });
   });

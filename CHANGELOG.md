@@ -1,3 +1,7 @@
+## 1.11.2
+* [#85: Update dependencies.](https://github.com/haensl/hooks/issues/85)
+* [#83: Migrate to React@18.](https://github.com/haensl/hooks/issues/83)
+
 ## 1.11.1
 * [#81: Update dependencies.](https://github.com/haensl/hooks/issues/81)
 
