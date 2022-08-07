@@ -243,7 +243,7 @@ describe('cjs module test', () => {
         const windowSize = useWindowSize();
 
         return (
-          <span>useWindoSize test. { windowSize }</span>
+          <span>useWindoSize test. { windowSize.width }</span>
         );
       };
     });
