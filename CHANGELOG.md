@@ -1,3 +1,6 @@
+## 1.12.1
+* [#91: Update dependencies.](https://github.com/haensl/hooks/issues/91)
+
 ## 1.12.0
 * [#87: Add `useInterval` hook.](https://github.com/haensl/hooks/issues/87)
 
