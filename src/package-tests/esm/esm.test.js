@@ -11,6 +11,7 @@ import {
   useIsMounted,
   useIsomorphicLayoutEffect,
   useIsScrolling,
+  useLang,
   useOnScroll,
   usePrevious,
   useWindowScroll,
@@ -195,6 +196,26 @@ describe('esm module test', () => {
 
         return (
           <span>useIsScrolling test. { isScrolling }</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
+  describe('useLang', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const lang = useLang();
+
+        return (
+          <span>useIsLang test. { lang }</span>
         );
       };
     });

@@ -53,6 +53,7 @@ const DebouncedButton = () => {
 * [`useIsMounted`](#useIsMounted): keep track of whether or not a component is mounted.
 * [`useIsomorphicLayoutEffect`](#useIsomorphicLayoutEffect): use this instead of [`useLayoutEffect`](https://reactjs.org/docs/hooks-reference.html#uselayouteffect) if your app uses serverside rendering (SSR).
 * [`useIsScrolling`](#useIsScrolling): keep track of whether or not the user is scrolling.
+* [`useLang`](#useLang): use the browser's language setting.
 * [`useOnScroll`](#useOnScroll): subscribe to scroll events.
 * [`usePrevious`](#usePrevious): keep track of a variable's previous value.
 * [`useWindowScroll`](#useWindowScroll): keep track of the `window`'s scroll position.
@@ -293,7 +294,7 @@ const MyComponent = () => {
 
 Returns a `boolean` indicating whether or not the user is scrolling. You can subscribe to a specific element via the first argument, `el` _(default: `window`)_. End of scrolling is determined by no incoming scroll events for `scrollEndMs` milliseconds _(default: `100`)_. Please check the [example blow](#useIsScrollingExample) as well as the [Codepen example](https://codepen.io/haensl/pen/qBbqeWz)
 
-##### Example<a name=useIsScrollingExample></a>
+##### Example<a name="useIsScrollingExample"></a>
 
 ```javascript
 import React from 'react';
@@ -309,6 +310,25 @@ const UserScrollTracker = () => {
 ```
 
 #### [→ Codepen example](https://codepen.io/haensl/pen/qBbqeWz)
+
+### `useLang({ defaultLang = 'en' }) => string` <a name="useLang"></a>
+
+Returns the user's language setting from [`navigator.language`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/language). Use the `defaultLang` of the options parameter to set a default language. _(default: `'en`)_.
+
+```javascript
+import React from 'react';
+import { useLang } from '@haensl/react-hooks';
+
+const MyComponent = () => {
+  const lang = useLang();
+
+  return (
+    <span>The user's preferred language is { lang }.</span>
+  );
+};
+```
+
+##### Example <a name="useLangExample"></a>
 
 ### `useOnScroll(fn, [el = window])` <a name="useOnScroll"></a>
 
