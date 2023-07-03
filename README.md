@@ -315,6 +315,8 @@ const UserScrollTracker = () => {
 
 Returns the user's language setting from [`navigator.language`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/language). Use the `defaultLang` of the options parameter to set a default language. _(default: `'en`)_.
 
+##### Example <a name="useLangExample"></a>
+
 ```javascript
 import React from 'react';
 import { useLang } from '@haensl/react-hooks';
@@ -327,8 +329,6 @@ const MyComponent = () => {
   );
 };
 ```
-
-##### Example <a name="useLangExample"></a>
 
 ### `useOnScroll(fn, [el = window])` <a name="useOnScroll"></a>
 
