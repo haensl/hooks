@@ -6,6 +6,7 @@ import _useInterval from './useInterval';
 import _useIsMounted from './useIsMounted';
 import _useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
 import _useIsScrolling from './useIsScrolling';
+import _useLang from './useLang';
 import _useOnScroll from './useOnScroll';
 import _usePrevious from './usePrevious';
 import _useWindowScroll from './useWindowScroll';
@@ -19,6 +20,7 @@ export const useInterval = _useInterval;
 export const useIsMounted = _useIsMounted;
 export const useIsomorphicLayoutEffect = _useIsomorphicLayoutEffect;
 export const useIsScrolling = _useIsScrolling;
+export const useLang = _useLang;
 export const useOnScroll = _useOnScroll;
 export const usePrevious = _usePrevious;
 export const useWindowScroll = _useWindowScroll;
@@ -33,6 +35,7 @@ const exports = {
   useIsMounted,
   useIsomorphicLayoutEffect,
   useIsScrolling,
+  useLang,
   useOnScroll,
   usePrevious,
   useWindowScroll,

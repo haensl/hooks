@@ -11,6 +11,7 @@ import {
   useIsMounted,
   useIsomorphicLayoutEffect,
   useIsScrolling,
+  useLang,
   useOnScroll,
   usePrevious,
   useWindowScroll,
@@ -193,6 +194,28 @@ describe('cjs module test', () => {
 
         return (
           <span>useIsScrolling test. { isScrolling }</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
+  });
+
+  describe('useLang', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        const lang = useLang();
+
+        return (
+          <span>useLang test. { lang }</span>
         );
       };
     });

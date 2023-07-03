@@ -1,6 +1,6 @@
 {
   "name": "@haensl/react-hooks",
-  "version": "1.12.2",
+  "version": "1.13.0",
   "description": "Assorted React hooks.",
   "main": "dist/hooks.cjs.js",
   "module": "dist/hooks.esm.js",
@@ -130,6 +130,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.14.5",
