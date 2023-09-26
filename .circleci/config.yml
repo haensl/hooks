@@ -46,7 +46,8 @@ commands:
     steps:
       - checkout
       - restore_cache:
-          keys: hooks-dependencies-{{ checksum "package-lock.json" }}
+          keys:
+            - hooks-dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: install dependencies
           command: npm i
