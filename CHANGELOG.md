@@ -1,3 +1,6 @@
+## 1.13.1
+* [#97: Update dependencies.](https://github.com/haensl/hooks/issues/97)
+
 ## 1.13.0
 * [#95: Add `useLang` hook.](https://github.com/haensl/hooks/issues/95)
 * Update dependencies.
