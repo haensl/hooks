@@ -46,14 +46,15 @@ commands:
     steps:
       - checkout
       - restore_cache:
-          keys: hooks-dependencies-{{ checksum "package.json" }}
+          keys:
+            - hooks-dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: install dependencies
           command: npm i
       - save_cache:
           paths:
             - node_modules
-          key: hooks-dependencies-{{ checksum "package.json" }}
+          key: hooks-dependencies-{{ checksum "package-lock.json" }}
       - extract-versions
 
   create-test-project:
@@ -69,6 +70,7 @@ commands:
           command: |
             mkdir << parameters.project_name >>
             cd << parameters.project_name >> && npm init -y
+
   bundle-test-setup:
     steps:
       - attach_workspace:
@@ -79,18 +81,6 @@ commands:
           working-directory: /tmp/test-app
           command: |
             npm i -S ~/hooks
-  package-information:
-    steps:
-      - run:
-          name: install tree
-          command: sudo apt-get -y install tree
-      - run:
-          name: gather bundle information
-          command: |
-            npm info @haensl/react-hooks@${VERSION} > ./bundle.info
-            tree -s node_modules/@haensl/react-hooks >> ./bundle.info
-      - store_artifacts:
-          path: bundle.info
 
 workflows:
   version: 2
@@ -129,7 +119,7 @@ workflows:
 jobs:
   lint:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
     working_directory: ~/hooks
     steps:
       - init
@@ -145,7 +135,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
     working_directory: ~/hooks
     steps:
       - init
@@ -158,7 +148,7 @@ jobs:
 
   bundle:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
     working_directory: ~/hooks
     steps:
       - init
@@ -193,7 +183,7 @@ jobs:
 
   bundle-test-cjs-js:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
     steps:
       - init
       - attach_workspace:
@@ -208,7 +198,7 @@ jobs:
       - restore_cache:
           working_directory: /tmp/test-app
           keys:
-            - hooks-cjs-module-test-dependencies-{{ checksum "package.json" }}
+            - hooks-cjs-module-test-dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: install dependencies
           working_directory: /tmp/test-app
@@ -222,7 +212,7 @@ jobs:
           working_directory: /tmp/test-app
           paths:
             - node_modules
-          key: hooks-cjs-module-test-dependencies-{{ checksum "package.json" }}
+          key: hooks-cjs-module-test-dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: test cjs.js module
           working_directory: /tmp/test-app
@@ -234,7 +224,7 @@ jobs:
 
   bundle-test-esm-js:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
     steps:
       - init
       - attach_workspace:
@@ -268,7 +258,7 @@ jobs:
 
   ensure-versioned-correctly:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
     working_directory: ~/hooks
     steps:
       - init
@@ -299,7 +289,7 @@ jobs:
 
   publish:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
     working_directory: ~/hooks
     steps:
       - init
@@ -314,7 +304,7 @@ jobs:
 
   package-test-esm-js:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
     steps:
       - init
       - attach_workspace:
@@ -347,7 +337,6 @@ jobs:
       - store_test_results:
           working_directory: /tmp/esm-test
           path: test-results
-      - package-information
 
   publish-github-release:
     docker:
