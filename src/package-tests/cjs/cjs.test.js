@@ -14,6 +14,7 @@ import {
   useLang,
   useOnScroll,
   usePrevious,
+  useTimeout,
   useWindowScroll,
   useWindowSize
 } from '@haensl/react-hooks';
@@ -325,6 +326,30 @@ describe('cjs module test', () => {
 
         return (
           <span>useInterval test.</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      ReactDOM.render(
+        <TestComponent />,
+        container
+      );
+      ReactDOM.unmountComponentAtNode(container);
+    });
+  });
+
+  describe('useTimeout', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        useTimeout(() => {
+          // do nothing
+        }, 100);
+
+        return (
+          <span>useTimeout test.</span>
         );
       };
     });

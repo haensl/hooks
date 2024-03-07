@@ -11,7 +11,7 @@
     "coverage:ci": "CI=true npm test -- --ci --coverage",
     "lint": "NODE_ENV=production eslint --ext js,jsx src/",
     "lint:ci": "NODE_ENV=production eslint --format junit -o test-results/eslint/results.xml --ext js,jsx src/",
-    "prepare": "husky",
+    "prepare": "if [ ${NODE_ENV} != 'production' ]; then npx husky init; fi",
     "tdd": "jest --runInBand --watch",
     "test": "jest --runInBand",
     "test:ci": "jest --runInBand --no-cache --ci --reporters='default' --reporters='jest-junit'"

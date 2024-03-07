@@ -14,6 +14,7 @@ import {
   useLang,
   useOnScroll,
   usePrevious,
+  useTimeout,
   useWindowScroll,
   useWindowSize
 } from '@haensl/react-hooks';
@@ -134,6 +135,28 @@ describe('esm module test', () => {
 
         return (
           <span>useInterval test.</span>
+        );
+      };
+    });
+
+    it('renders without crashing', () => {
+      expect(render.bind(render, <TestComponent />))
+        .not
+        .toThrow();
+    });
+  });
+
+  describe('useTimeout', () => {
+    let TestComponent;
+
+    beforeAll(() => {
+      TestComponent = () => {
+        useTimeout(() => {
+          // do nothing
+        }, 100);
+
+        return (
+          <span>useTimeout test.</span>
         );
       };
     });
