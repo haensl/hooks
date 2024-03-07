@@ -9,6 +9,7 @@ import _useIsScrolling from './useIsScrolling';
 import _useLang from './useLang';
 import _useOnScroll from './useOnScroll';
 import _usePrevious from './usePrevious';
+import _useTimeout from './useTimeout';
 import _useWindowScroll from './useWindowScroll';
 import _useWindowSize from './useWindowSize';
 
@@ -23,6 +24,7 @@ export const useIsScrolling = _useIsScrolling;
 export const useLang = _useLang;
 export const useOnScroll = _useOnScroll;
 export const usePrevious = _usePrevious;
+export const useTimeout = _useTimeout;
 export const useWindowScroll = _useWindowScroll;
 export const useWindowSize = _useWindowSize;
 
@@ -38,6 +40,7 @@ const exports = {
   useLang,
   useOnScroll,
   usePrevious,
+  useTimeout,
   useWindowScroll,
   useWindowSize
 };
