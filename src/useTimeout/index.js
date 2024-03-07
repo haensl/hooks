@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import useIsomorphicLayoutEffect from '../useIsomorphicLayoutEffect';
 
-const useInterval = (callback, intervalMs) => {
+const useTimeout = (callback, timeoutMs = 0) => {
   const cb = useRef(callback);
 
   useIsomorphicLayoutEffect(() => {
@@ -9,15 +9,14 @@ const useInterval = (callback, intervalMs) => {
   }, [callback]);
 
   useEffect(() => {
-    if (typeof cb.current !== 'function') {
-      return;
-    }
+    const timeoutId = setTimeout(() => {
+      cb.current();
+    }, timeoutMs);
 
-    const intervalId = setInterval(() => cb.current(), intervalMs);
     return () => {
-      clearInterval(intervalId);
+      clearTimeout(timeoutId);
     };
-  }, [intervalMs]);
+  }, [timeoutMs]);
 };
 
-export default useInterval;
+export default useTimeout;

@@ -56,6 +56,7 @@ const DebouncedButton = () => {
 * [`useLang`](#useLang): use the browser's language setting.
 * [`useOnScroll`](#useOnScroll): subscribe to scroll events.
 * [`usePrevious`](#usePrevious): keep track of a variable's previous value.
+* [`useTimeout`](#useTimeout): use a timeout.
 * [`useWindowScroll`](#useWindowScroll): keep track of the `window`'s scroll position.
 * [`useWindowSize`](#useWindowSize): keep track of the `window`'s size.
 
@@ -210,21 +211,19 @@ const DebouncedButton = () => {
 
 Calls a `fn` repeatedly every `intervalMs` milliseconds.
 
-##### Example<a name="useDebounceExample"></a>
+##### Example
 
 ```javascript
 import React, { useState, useCallback } from 'react';
 import { useInterval } from '@haensl/react-hooks';
 
-const DebouncedButton = () => {
+const MyAnimation = () => {
   const [frame, setFrame] = useState(0);
 
-  const handler = useCallback(() => {
-    setFrame((frame) => frame + 1);
-  }, [setFrame]);
-
   // Update frame every 100 milliseconds
-  useInterval(handler, 100);
+  useInterval(() => {
+    setFrame((frame) => frame + 1);
+  }, 100);
 
   return (
     <div>{ frame }</div>
@@ -385,6 +384,38 @@ const ScrollDirectionTracker = () => {
     <div className="ScrollDirectionTracker">
       <span>User is scrolling</span>
       <span>{ scrollDirection }px</span>
+    </div>
+  );
+};
+```
+
+### `useTimeout(fn, timeoutMs = 0)` <a name="useTimeout"></a>
+
+Calls `fn` once after `intervalMs` milliseconds.
+
+##### Example
+
+```javascript
+import React, { useState, useCallback } from 'react';
+import { useClassNames, useTimeout } from '@haensl/react-hooks';
+
+const MyComponent = () => {
+  const [animate, setAnimate] = useState(false);
+
+  // Start animation after 1s
+  useTimeout(() => {
+    setAnimate(true);
+  }, 1000);
+
+  const className = useClassNames({
+    animate
+  });
+
+  return (
+    <div
+        className={ className }
+    >
+        // ...
     </div>
   );
 };
