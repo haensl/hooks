@@ -1,3 +1,6 @@
+## 1.14.1
+* [#101: Update dependencies.](https://github.com/haensl/hooks/issues/101)
+
 ## 1.14.0
 * [#99: Add `useTimeout` hook.](https://github.com/haensl/hooks/issues/99)
 * Update dependencies.
