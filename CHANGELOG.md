@@ -1,3 +1,6 @@
+## 1.14.2
+* [#103: Update dependencies.](https://github.com/haensl/hooks/issues/103)
+
 ## 1.14.1
 * [#101: Update dependencies.](https://github.com/haensl/hooks/issues/101)
 
