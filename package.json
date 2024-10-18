@@ -139,7 +139,7 @@
     "@haensl/eslint-config": "^1.4.6",
     "@haensl/rollup-plugin-local-resolve": "^1.1.1",
     "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.2",
     "@testing-library/jest-dom": "^6.1.3",
