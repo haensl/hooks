@@ -1,6 +1,6 @@
 {
   "name": "@haensl/react-hooks",
-  "version": "1.14.1",
+  "version": "1.14.2",
   "description": "Assorted React hooks.",
   "main": "dist/hooks.cjs.js",
   "module": "dist/hooks.esm.js",
@@ -161,7 +161,7 @@
     "react": "^18.2.0",
     "react-app-polyfill": "^3.0.0",
     "react-dom": "^18.2.0",
-    "rimraf": "^5.0.0",
+    "rimraf": "^6.0.1",
     "rollup": "^4.12.1",
     "rollup-plugin-peer-deps-external": "^2.2.4"
   },
